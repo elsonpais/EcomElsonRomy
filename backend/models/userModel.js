@@ -13,13 +13,13 @@ const userSchema = new mongoose.Schema({
   },
   email: {
     type: String,
-    required: [true, "PLease Enter Your Email"],
+    required: [true, "Please Enter Your Email"],
     unique: true,
-    validator: [validator.isEmail, "Please Enter a valid Email"],
+    validate: [validator.isEmail, "Please Enter a valid Email"],
   },
   password: {
     type: String,
-    required: [true, "Please Enter your Password"],
+    required: [true, "Please Enter Your Password"],
     minLength: [8, "Password should be greater than 8 characters"],
     select: false,
   },
@@ -37,6 +37,10 @@ const userSchema = new mongoose.Schema({
     type: String,
     default: "user",
   },
+  createdAt: {
+    type: Date,
+    default: Date.now,
+  },
 
   resetPasswordToken: String,
   resetPasswordExpire: Date,
@@ -46,6 +50,7 @@ userSchema.pre("save", async function (next) {
   if (!this.isModified("password")) {
     next();
   }
+
   this.password = await bcrypt.hash(this.password, 10);
 });
 
@@ -56,17 +61,18 @@ userSchema.methods.getJWTToken = function () {
   });
 };
 
-userSchema.methods.comparePassword = async function (enteredPassword) {
-  return await bcrypt.compare(enteredPassword, this.password);
+// Compare Password
+
+userSchema.methods.comparePassword = async function (password) {
+  return await bcrypt.compare(password, this.password);
 };
 
-// generating password rest token
-
+// Generating Password Reset Token
 userSchema.methods.getResetPasswordToken = function () {
-  // generating token
+  // Generating Token
   const resetToken = crypto.randomBytes(20).toString("hex");
 
-  // hashing and adding resetPasswordToken to userSchema
+  // Hashing and adding resetPasswordToken to userSchema
   this.resetPasswordToken = crypto
     .createHash("sha256")
     .update(resetToken)
