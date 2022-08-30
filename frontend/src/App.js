@@ -43,6 +43,8 @@ import Contact from "./component/layout/Contact/Contact";
 import About from "./component/layout/About/About";
 import NotFound from "./component/layout/Not Found/NotFound";
 
+// import "bootstrap/dist/css/bootstrap.min.css";
+
 function App() {
   const { isAuthenticated, user } = useSelector((state) => state.user);
 
@@ -70,7 +72,7 @@ function App() {
 
   return (
     <Router>
-      <Header />
+      {/* <Header /> */}
 
       {isAuthenticated && <UserOptions user={user} />}
 

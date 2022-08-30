@@ -41,61 +41,127 @@ const Cart = ({ history }) => {
         <div className="emptyCart">
           <RemoveShoppingCartIcon />
 
-          <Typography>No Product in Your Cart</Typography>
+          <Typography>No Products in Your Cart</Typography>
           <Link to="/products">View Products</Link>
         </div>
       ) : (
         <Fragment>
-          <div className="cartPage">
-            <div className="cartHeader">
-              <p>Product</p>
-              <p>Quantity</p>
-              <p>Subtotal</p>
+          <div className="greyContainerCart">
+            <div className="cartSection">
+              <h3>Your Cart</h3>
+              <div className="cartHeader">
+                <p>Items</p>
+                <p>Price</p>
+              </div>
+              <div className="items">
+                {cartItems &&
+                  cartItems.map((item) => (
+                    <div className="item">
+                      <Link to={`/product/${item.product}`}>
+                        <img
+                          className="item-image"
+                          src={item.image}
+                          alt={item.name}
+                        />
+                      </Link>
+                      <div className="item-details">
+                        <Link
+                          to={`/product/${item.product}`}
+                          style={{ textDecoration: "none" }}
+                        >
+                          <h4 className="item-name">{item.name}</h4>
+                        </Link>
+
+                        {item.stock < 11 && (
+                          <p className="stockLeft">
+                            Only {item.stock} left in stock.
+                          </p>
+                        )}
+
+                        <div className="itemQuantity">
+                          <button
+                            onClick={() =>
+                              decreaseQuantity(item.product, item.quantity)
+                            }
+                          >
+                            -
+                          </button>
+                          <input type="number" value={item.quantity} readOnly />
+                          <button
+                            onClick={() =>
+                              increaseQuantity(
+                                item.product,
+                                item.quantity,
+                                item.stock
+                              )
+                            }
+                          >
+                            +
+                          </button>
+                        </div>
+                        <button
+                          className="remove"
+                          onClick={() => deleteCartItems(item.product)}
+                        >
+                          Remove
+                        </button>
+                      </div>
+                      <p className="item-price">Rs. {item.price}/-</p>
+                    </div>
+                  ))}
+              </div>
             </div>
-
-            {cartItems &&
-              cartItems.map((item) => (
-                <div className="cartContainer" key={item.product}>
-                  <CartItemCard item={item} deleteCartItems={deleteCartItems} />
-                  <div className="cartInput">
-                    <button
-                      onClick={() =>
-                        decreaseQuantity(item.product, item.quantity)
-                      }
-                    >
-                      -
-                    </button>
-                    <input type="number" value={item.quantity} readOnly />
-                    <button
-                      onClick={() =>
-                        increaseQuantity(
-                          item.product,
-                          item.quantity,
-                          item.stock
-                        )
-                      }
-                    >
-                      +
-                    </button>
-                  </div>
-                  <p className="cartSubtotal">{`₹${
-                    item.price * item.quantity
-                  }`}</p>
-                </div>
-              ))}
-
-            <div className="cartGrossProfit">
-              <div></div>
-              <div className="cartGrossProfitBox">
-                <p>Gross Total</p>
-                <p>{`₹${cartItems.reduce(
+            <div className="priceSection">
+              <h3>Price Details</h3>
+              <div className="subtotal">
+                <h5>SubTotal ({cartItems.length} items)</h5>
+                <h5>
+                  Rs.{" "}
+                  {cartItems.reduce(
+                    (acc, item) => acc + item.quantity * item.price,
+                    0
+                  )}
+                  /-
+                </h5>
+              </div>
+              <div className="shippingCharges">
+                <h5>Shipping Charges</h5>
+                {cartItems.reduce(
                   (acc, item) => acc + item.quantity * item.price,
                   0
-                )}`}</p>
+                ) > 1000 ? (
+                  <h5 className="free">Free</h5>
+                ) : (
+                  <h5>Rs. 50/-</h5>
+                )}
               </div>
-              <div></div>
-              <div className="checkOutBtn">
-                <button onClick={checkoutHandler}>Check Out</button>
+              <div className="total">
+                <h4>Total</h4>
+                {cartItems.reduce(
+                  (acc, item) => acc + item.quantity * item.price,
+                  0
+                ) > 1000 ? (
+                  <h4>
+                    Rs.{" "}
+                    {cartItems.reduce(
+                      (acc, item) => acc + item.quantity * item.price,
+                      0
+                    )}
+                    /-
+                  </h4>
+                ) : (
+                  <h4>
+                    Rs.{" "}
+                    {cartItems.reduce(
+                      (acc, item) => acc + item.quantity * item.price,
+                      0
+                    ) + 50}
+                    /-
+                  </h4>
+                )}
+              </div>
+              <div className="checkout">
+                <button onClick={checkoutHandler}>Proceed to buy</button>
               </div>
             </div>
           </div>
