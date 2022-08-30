@@ -9,15 +9,24 @@ import Slider from "@material-ui/core/Slider";
 import { useAlert } from "react-alert";
 import Typography from "@material-ui/core/Typography";
 import MetaData from "../layout/MetaData";
+import Select from "react-select";
 
 const categories = [
   "Laptop",
   "Footwear",
-  "Bottom",
-  "Tops",
-  "Attire",
-  "Camera",
+  "Clothing",
+  "Cameras",
   "SmartPhones",
+  "Appliances",
+  "Beauty",
+];
+
+const priceRange = [
+  "500 and below",
+  "500 - 1000",
+  "1000 - 1500",
+  "1500 - 2000",
+  "2000 and above"
 ];
 
 const Products = ({ match }) => {
@@ -51,6 +60,14 @@ const Products = ({ match }) => {
   };
   let count = filteredProductsCount;
 
+  const changeSelectPrice = (price) => {
+    if (price == "500 and below") return([0,500]);
+    else if (price = "500 - 1000") return([500,1000]);
+    else if (price = "1000 - 1500") return([1000,1500]);
+    else if (price = "1500 - 2000") return([1500,2000]);
+    else if (price = "2000 and above") return([2000,500000]);
+  };
+
   useEffect(() => {
     if (error) {
       alert.error(error);
@@ -67,16 +84,61 @@ const Products = ({ match }) => {
       ) : (
         <Fragment>
           <MetaData title="PRODUCTS -- ECOMMERCE" />
-          <h2 className="productsHeading">Products</h2>
+          {/* <h2 className="productsHeading">Products</h2> */}
 
-          <div className="products">
+          <div className="productsPage">
+            <div className="filters">
+              <div>
+                <h3>Price Range</h3>
+                <select id="priceSelect" onChange={()=> setPrice(changeSelectPrice(document.getElementById("priceSelect")))}>
+                  <option>500 and below</option>
+                  <option>500 - 1000</option>
+                  <option>1000 - 1500</option>
+                  <option>1500 - 2000</option>
+                  <option>2000 and above</option>
+                </select>
+              </div>
+              <div>
+                <h3>Categories</h3>
+                <select id="categorySelect" onChange={()=> setCategory(document.getElementById('categorySelect').value)}>
+                  <option>{category || "All"}</option>
+                  {categories.filter((cat)=> cat !== category).map((category) => (
+                    <option>{category}</option>
+                  ))}
+                </select>
+              </div>
+              <div>
+                <h3>Sort by</h3>
+                <select>
+                  <option>Price - Low to High</option>
+                  <option>Price - High to Low</option>
+                  <option>Customer Rating</option>
+                </select>
+              </div>
+            </div>
+
+            <div className=" productsContainer">
+              {!products ? (
+                <h2>No products match your search.</h2>
+              ) : (
+                <div className="products">
+                  {products &&
+                    products.map((product) => (
+                      <ProductCard key={product._id} product={product} />
+                    ))}
+                </div>
+              )}
+            </div>
+          </div>
+
+          {/* <div className="products">
             {products &&
               products.map((product) => (
                 <ProductCard key={product._id} product={product} />
               ))}
-          </div>
+          </div> */}
 
-          <div className="filterBox">
+          {/* <div className="filterBox">
             <Typography>Price</Typography>
             <Slider
               value={price}
@@ -113,7 +175,7 @@ const Products = ({ match }) => {
                 max={5}
               />
             </fieldset>
-          </div>
+          </div> */}
           {resultPerPage < count && (
             <div className="paginationBox">
               <Pagination

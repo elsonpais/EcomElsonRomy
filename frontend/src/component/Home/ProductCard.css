@@ -1,0 +1,87 @@
+.productCard {
+    width: 16vmax;
+    display: flex;
+    flex-direction: column;
+    text-decoration: none;
+    color: rgb(48, 48, 48);
+    margin: 2vmax 1vmax;
+    transition: all 0.5s;
+    padding-bottom: 0.5vmax;
+    background-color: white;
+    border-radius: 12px;
+    /* box-shadow: 2px 4px 6px rgba(15, 15, 15, 0.26); */
+    padding-right: 2.2vmax;
+    padding-left: 2.2vmax;
+    align-items: center;
+}
+
+.productCard>img {
+    width: 20vmax;
+    height: 20vmax;
+    object-fit: scale-down;
+    padding-top: 15px;
+    /* background: rgb(241, 241, 241); */
+}
+
+.productCard>p {
+    align-self: start;
+}
+
+.productCard>div {
+    margin: 0.5vmax;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    align-self: flex-start;
+}
+
+.productCardSpan {
+    margin: 0.5vmax;
+    font: 300 0.7vmax "Roboto";
+}
+
+.productCard>p {
+    font-family: Poppins;
+    font-size: 1.2vmax;
+    margin: 1vmax 0.5vmax;
+    margin-bottom: 0;
+}
+
+.productCard>span {
+    margin: 0.5vmax;
+    color: tomato;
+    font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+    font-size: 1vmax;
+    align-self: flex-start;
+}
+
+.productCard:hover {
+    box-shadow: 4px 8px 12px rgba(15, 15, 15, 0.26);
+
+    transform: scale(1.05);
+}
+
+@media screen and (max-width: 600px) {
+
+    .productCard {
+        width: 21vmax;
+    }
+
+    .productCard>p {
+        font-size: 1.7vmax;
+    }
+
+    .productCard>div {
+        margin: 0vmax;
+        display: block;
+    }
+
+    .productCard>span {
+        font-size: 1.5vmax;
+    }
+
+    .productCard>div>span {
+        margin: 0 0.5vmax;
+        font: 300 1vmax "Roboto";
+    }
+}
