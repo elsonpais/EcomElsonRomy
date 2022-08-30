@@ -1,11 +1,228 @@
-.speedDial {
-  position: fixed;
-  right: 3vmax;
-  top: 3vmax;
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap');
+
+*{
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
 }
 
-.speedDialIcon {
-  width: 56px;
-  height: 56px;
-  border-radius: 100%;
+header {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 65px;
+  width: 100%;
+  overflow: hidden;
+  padding: 0 2rem;
+  background-color: black;
+  color: azure;
+}
+
+header h3 {
+  position: relative;
+  float: left;
+}
+
+header nav {
+  display: flex;
+  align-items: flex-end;
+  align-items: center;
+  margin-left: 60%;
+  overflow: hidden;
+  width: 100vw;
+}
+
+nav.hide {
+	opacity: 0;
+	pointer-events: none;
+}
+
+nav a {
+  margin: 0 2rem;
+  color: azure;
+  text-decoration: none;
+  opacity: 0.7;
+  transition-delay: 250ms;
+}
+
+nav a:hover {
+  opacity: 1;
+}
+
+header .logo {
+  cursor: pointer;
+}
+
+header .nav-btn {
+  padding: 5px;
+  cursor: pointer;
+  background: transparent;
+  border: none;
+  outline: none;
+  color: aliceblue;
+  visibility: hidden;
+  opacity: 0;
+  font-size: 1.8rem;
+}
+
+header .search_icon {
+  position: relative;
+}
+
+header .search_icon img{
+  overflow: auto;
+  position: relative;
+  height: 5vmax;
+  width: 3vmax;
+  object-fit: cover;
+  cursor: pointer;  
+  right: 70px;
+}
+
+header .orange_nav img {
+
+  height: 80px; 
+  transform: translateX(-200vh);
+}
+
+header .orange_nav {
+  animation: nav_animation 3s infinite ;
+}
+
+@keyframes nav_animation{
+	0%{
+		transform: translateX(-500vh);
+		opacity: 0.8;
+	}
+	100%{
+		transform: translateX(600vh);
+		opacity: 0.5;
+	}
+  
+}
+
+.search_icon {
+  padding: 0;
+  margin: 0;
+}
+ .icon {
+  font-size: 1.5rem;
+  color: white;
+  background-color: black;
+  padding: 0;
+  margin: 0;
+  fill: white;
+  cursor: pointer;
+}
+
+.minicon1 {
+  margin-left: 16px;
+  margin-bottom: -7px;
+}
+
+.minicon2 {
+  margin-left: 8px;
+  margin-bottom: -7px;
+}
+
+.minicon3 {
+  margin-left: 12px;
+  margin-bottom: -7px;
+}
+
+.search-container.hide {
+	opacity: 0;
+	pointer-events: none;
+}
+.search-container {
+	width: 60%;
+	margin: 0 auto;
+	padding: 0 42px;
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	z-index: 200;
+  margin-top: 15px;
+}
+.search-container .search {
+	position: absolute;
+	left: 12px;
+	opacity: 0.5;
+}
+.search-container form {
+	width: 100%;
+	margin: 0 auto;
+}
+.search-container form input {
+	width: 95%;
+	height: 44px;
+	border: 0;
+	outline: none;
+	background: rgb(227, 226, 226);
+	color: white;
+	font-family: "Inter", sans-serif;
+	font-size: 17px;
+  padding: 10px;
+  border-radius: 10px;
+}
+.close-search {
+	/* background: url('https://vignette.wikia.nocookie.net/ru.starwars/images/7/7e/Ico_close.png/revision/latest?cb=20171228124525'); */
+	display: block;
+	background-position: center;
+	background-size: 20px;
+	background-repeat: no-repeat;
+	font-size: medium;
+  margin-top: 12px;
+}
+.search-container .close-search {
+	position: absolute;
+	top: 0;
+	right: 12px;
+	opacity: 0.5;
+	cursor: pointer;
+	transition: all 400ms;
+}
+.search-container .close:hover {
+	opacity: 0.7;
+}
+
+@media only screen and (max-width: 1024px) {
+  header .nav-btn {
+    visibility: visible;
+    opacity: 1;
+  }
+
+  header nav {
+    position: fixed;
+    top: 0;
+    right: 0;
+    height: 100%;
+    width: 70%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    justify-content: center;
+    gap: 1.5rem;
+    background-color: grey;
+    transition: 1s;
+    transform: translateX(100vh);
+    opacity: 1;
+  }
+
+  header .responsive_nav {
+    transform: none;
+  }
+
+  nav .nav-close-btn {
+    position: absolute;
+    top: 2rem;
+    right: 2rem;
+  }
+
+  nav a{
+    font-size: 1.5rem;
+  }
 }

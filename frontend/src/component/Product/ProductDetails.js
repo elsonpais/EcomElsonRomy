@@ -65,9 +65,9 @@ const ProductDetails = ({ match }) => {
     alert.success("Item Added To Cart");
   };
 
-  const submitReviewToggle = () => {
-    open ? setOpen(false) : setOpen(true);
-  };
+  // const submitReviewToggle = () => {
+  //   open ? setOpen(false) : setOpen(true);
+  // };
 
   const reviewSubmitHandler = () => {
     const myForm = new FormData();
@@ -106,9 +106,22 @@ const ProductDetails = ({ match }) => {
       ) : (
         <Fragment>
           <MetaData title={`${product.name} -- ECOMMERCE`} />
+          
           <div className="ProductDetails">
-            <div>
-              <Carousel>
+            <div className="imagecontainer">
+              <div className="imagePreviewContainer">
+                {product.images &&
+                    product.images.map((item, i) => (
+                      <img
+                        className="imagePreview"
+                        key={i}
+                        src={item.url}
+                      />
+                    ))}
+              </div>
+
+              <div>
+              <Carousel interval={100000000} className="carouselContainer">
                 {product.images &&
                   product.images.map((item, i) => (
                     <img
@@ -119,15 +132,17 @@ const ProductDetails = ({ match }) => {
                     />
                   ))}
               </Carousel>
+              </div>
             </div>
+            
 
-            <div>
+            <div className="rightProductDetails">
               <div className="detailsBlock-1">
                 <h2>{product.name}</h2>
-                <p>Product # {product._id}</p>
+                {/* <p>Product # {product._id}</p> */}
               </div>
               <div className="detailsBlock-2">
-                <Rating {...options} />
+                <Rating {...options}/>
                 <span className="detailsBlock-2-span">
                   {" "}
                   ({product.numOfReviews} Reviews)
@@ -137,22 +152,23 @@ const ProductDetails = ({ match }) => {
                 <h1>{`₹${product.price}`}</h1>
                 <div className="detailsBlock-3-1">
                   <div className="detailsBlock-3-1-1">
+                    <p>Quantity</p>
                     <button onClick={decreaseQuantity}>-</button>
-                    <input readOnly type="number" value={quantity} />
+                    <input type="number" value={quantity} />
                     <button onClick={increaseQuantity}>+</button>
                   </div>
-                  <button
-                    disabled={product.Stock < 1 ? true : false}
-                    onClick={addToCartHandler}
-                  >
-                    Add to Cart
-                  </button>
                 </div>
+                <button className="addCartBtn"
+                    disabled={product.Stock < 1 ? true : false}
+                    onClick={addToCartHandler}>ADD TO CART</button>
+
+                <button className="BuyNowBtn"
+                    disabled={product.Stock < 1 ? true : false}
+                    onClick={addToCartHandler}>BUY NOW</button>
 
                 <p>
-                  Status:
                   <b className={product.Stock < 1 ? "redColor" : "greenColor"}>
-                    {product.Stock < 1 ? "OutOfStock" : "InStock"}
+                    {product.Stock < 1 ? "OutOfStock" : ""}
                   </b>
                 </p>
               </div>
@@ -161,15 +177,15 @@ const ProductDetails = ({ match }) => {
                 Description : <p>{product.description}</p>
               </div>
 
-              <button onClick={submitReviewToggle} className="submitReview">
+              {/* <button onClick={submitReviewToggle} className="submitReview">
                 Submit Review
-              </button>
+              </button> */}
             </div>
           </div>
 
           <h3 className="reviewsHeading">REVIEWS</h3>
 
-          <Dialog
+          {/* <Dialog
             aria-labelledby="simple-dialog-title"
             open={open}
             onClose={submitReviewToggle}
@@ -198,7 +214,7 @@ const ProductDetails = ({ match }) => {
                 Submit
               </Button>
             </DialogActions>
-          </Dialog>
+          </Dialog> */}
 
           {product.reviews && product.reviews[0] ? (
             <div className="reviews">

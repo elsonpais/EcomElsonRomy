@@ -1,3 +1,12 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap');
+
+*{
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+
 .ProductDetails {
   background-color: rgb(255, 255, 255);
   width: 100vw;
@@ -22,28 +31,51 @@
   align-items: flex-start;
 }
 
+.imageContainer {
+  position: relative;
+}
+
+.imagePreviewContainer {
+  position: absolute;
+  left: 0;
+  margin-left: 120px;
+}
+
+.carouselContainer {
+  position: absolute;
+  margin-left: 120px;
+}
+
+.imagePreview {
+  display: flex;
+  height: 7vmax;
+  width: 7vmax;
+  margin-top: 10px;
+}
+
 .CarouselImage {
-  width: 20vmax;
+  height: 37vmax;
+  width: 37vmax;
+  float: right;
+}
+
+.rightProductDetails{
+  width: 100%;
 }
 
 .detailsBlock-1 > h2 {
   color: rgb(54, 54, 54);
-  font: 600 1.6vmax "Roboto";
-}
-
-.detailsBlock-1 > p {
-  color: rgba(54, 54, 54, 0.582);
-  font: 200 0.6vmax cursive;
+  margin-top: 50px;
+  font-size: 35px;
 }
 
 .detailsBlock-2 {
   display: flex;
   justify-content: flex-start;
   align-items: center;
-  border-top: 1px solid rgba(0, 0, 0, 0.205);
-  border-bottom: 1px solid rgba(0, 0, 0, 0.205);
   width: 70%;
-  padding: 1vmax 0;
+  margin-top: 7px;
+  margin-left: -3px;
 }
 
 .detailsBlock-2-span {
@@ -52,78 +84,120 @@
 }
 
 .detailsBlock-3 {
-  width: 70%;
+  width: 100%;
+  margin-top: 10px;
 }
 
 .detailsBlock-3 > h1 {
   color: rgba(17, 17, 17, 0.795);
   font: 400 1.8vmax "Franklin Gothic Medium";
   margin: 1vmax 0;
+  padding-bottom: 40px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.205);
+  width: 92%;
 }
 .detailsBlock-3-1 {
+  position: relative;
   display: flex;
   align-items: center;
 }
 
+.detailsBlock-3-1-1 > p {
+  font-size: 15px;
+  color: gray;
+  margin-bottom: 7px;
+}
+
 .detailsBlock-3-1-1 > button {
-  border: none;
-  background-color: rgba(0, 0, 0, 0.616);
+  position: absolute;
+  border: 1px solid;
+  color: black;
+  background-color: white;
   padding: 0.5vmax;
   cursor: pointer;
-  color: white;
   transition: all 0.5s;
+  width: 55px;
+  height: 50px;
+  font-size: 23px;
+  align-items: center;
 }
 .detailsBlock-3-1-1 > button:hover {
-  background-color: rgba(0, 0, 0, 0.767);
+  border: 2px solid;
 }
 
 .detailsBlock-3-1-1 > input {
-  border: none;
+  /* border: none; */
+  margin-left: 64px;
+  margin-right: 10px;
   padding: 0.5vmax;
-  width: 1vmax;
+  width: 55px;
+  height: 50px;
   text-align: center;
-  outline: none;
   font: 400 0.8vmax "Roboto";
   color: rgba(0, 0, 0, 0.74);
 }
 
-.detailsBlock-3-1 > button:last-child {
-  border: none;
+.addCartBtn {
+  border: 1px solid;
   cursor: pointer;
+  width: 92%;
   color: white;
+  background: black;
   transition: all 0.5s;
-  background-color: tomato;
-  font: 500 0.7vmax "Roboto";
-  border-radius: 20px;
-  padding: 0.5vmax 2vmax;
-  margin: 1vmax;
+  padding: 0.8vmax 2vmax;
+  margin-top: 40px;
   outline: none;
+  align-items: center;
+  font-size: 15px;
 }
 
-.detailsBlock-3-1 > button:last-child:hover {
-  background-color: rgb(214, 84, 61);
+.addCartBtn:hover {
+  background-color: rgb(235, 232, 232);;
+  color: black;
 }
+
+.BuyNowBtn {
+  border: 1px solid;
+  cursor: pointer;
+  width: 92%;
+  color: white;
+  background: black;
+  transition: all 0.5s;
+  padding: 0.8vmax 2vmax;
+  margin-top: 10px;
+  outline: none;
+  align-items: center;
+  font-size: 15px;
+}
+
+.BuyNowBtn:hover {
+  background-color: rgb(235, 232, 232);;
+  color: black;
+}
+
 
 .detailsBlock-3 > p {
-  border-top: 1px solid rgba(0, 0, 0, 0.205);
-  border-bottom: 1px solid rgba(0, 0, 0, 0.205);
-  padding: 1vmax 0;
+  /* border-top: 1px solid rgba(0, 0, 0, 0.205);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.205); */
+  /* padding: 1vmax 0;
   color: rgba(0, 0, 0, 0.651);
   font: 400 1vmax "Roboto";
   margin: 1vmax 0;
+  width: 92%; */
 }
 
 .detailsBlock-4 {
-  color: rgba(0, 0, 0, 0.897);
-  font: 500 1.2vmax sans-serif;
+  color: black;
+  margin-top: 15px;
 }
 
 .detailsBlock-4 > p {
-  color: rgba(0, 0, 0, 0.534);
-  font: 300 0.8vmax sans-serif;
+  margin-top: 5px;
+  color: black;
+  font-size: 15px;
 }
 
-.submitReview {
+/* .submitReview {
   border: none;
   background-color: tomato;
   font: 500 0.7vmax "Roboto";
@@ -138,7 +212,7 @@
 .submitReview:hover {
   background-color: rgb(197, 68, 45);
   transform: scale(1.1);
-}
+} */
 
 .submitDialog {
   display: flex;

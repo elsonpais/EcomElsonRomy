@@ -1,3 +1,240 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap');
+
+*{
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+
+.profilePage {
+  background-color: rgb(240, 240, 240);
+  height: 100%;
+  width: 100%;
+}
+.parent > div{
+  position: relative;
+  top: 73px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  width: 70%;
+  margin-left: 15%;
+  margin-right: 15%;
+  justify-content: space-between;
+  border-bottom: 1px solid;
+}
+
+.parent > div > h2 {
+  font-size: 20px;
+  padding-bottom: 7px;
+}
+
+.parent > div > a {
+  font-size: 12px;
+  text-decoration: none;
+  padding-bottom: 7px;
+  transition: all 0.5s;
+  color: black;
+}
+
+.parent > div > a:hover {
+  font-size: 12px;
+  text-decoration: underline;
+}
+
+.parent > h1 {
+  margin-top: 120px;
+  margin-left: 232px;
+  margin-bottom: 25px;
+}
+
+.ProfileOrder {
+  background-color: white;
+  width: 100%;
+  height: 260px;
+}
+
+.ProfileOrder > h1 {
+  margin-left: 232px;
+  padding-top: 65px;
+}
+
+.ProfileOrder > h4 {
+  margin-left: 234px;
+  padding-top: 25px;
+}
+
+.OrderContainer {
+  background-color: rgb(240, 240, 240);
+  width: 100%;
+  height: 330px;
+  align-items: center;
+  padding: 40px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.orderCard {
+  background-color: white;
+  width: 30vmax;
+  height: 17vmax;
+  margin-left: 245px;
+  border-radius: 5px;
+  padding-top: 38px;
+  padding-left: 40px;
+}
+
+.orderCard > h1 {
+  margin-bottom: 10px;
+}
+
+.orderCard > p {
+  margin-bottom: 10px;
+}
+
+.orderCard > a {
+  text-decoration: none;
+  color: rgb(4, 4, 245);
+}
+
+.orderCard > a:hover {
+  text-decoration: underline;
+}
+
+.soCard {
+  background-color: white;
+  width: 30vmax;
+  height: 17vmax;
+  margin-right: 245px;
+  border-radius: 5px;
+  padding-top: 38px;
+  padding-left: 35px;
+  padding-right: 28px;
+}
+
+.soCard > h1 {
+  margin-bottom: 10px;
+}
+
+.soCard > p {
+  margin-bottom: 10px;
+}
+
+.soCard > a {
+  text-decoration: none;
+  color: rgb(4, 4, 245);
+}
+
+.soCard > a:hover {
+  text-decoration: underline;
+}
+
+.accountSettings {
+  width: 100%;
+  height: 600px;
+  background-color: white;
+
+}
+
+.accountSettings > h1 {
+  margin-left: 232px;
+  padding-top: 70px;
+}
+
+.shippingInfo {
+  display: flex;
+  flex-direction: row;
+}
+
+.shippingInfo > div > h2 {
+  margin-left: 232px;
+  padding-top: 40px;
+}
+
+.shippingAddr {
+  padding-top: 45px;
+  padding-left: 190px;
+}
+
+.shippingAddr > a {
+  text-decoration: none;
+  color: rgb(4, 4, 245);
+}
+
+.shippingAddr > a:hover {
+  text-decoration: underline;
+}
+
+.contactInfo {
+  padding-top: 45px;
+  padding-left: 100px;
+}
+
+.contactInfo > a {
+  text-decoration: none;
+  color: rgb(4, 4, 245);
+}
+
+.contactInfo > a:hover {
+  text-decoration: underline;
+}
+
+.privacyInfo {
+  display: flex;
+  flex-direction: row;
+}
+
+.privacyInfo > div > h2 {
+  margin-left: 232px;
+  padding-top: 40px;
+}
+
+.PIContainer {
+  padding-top: 45px;
+  padding-left: 207px;
+}
+
+.PIContainer > a {
+  text-decoration: none;
+  color: rgb(4, 4, 245);
+}
+
+.PIContainer > a:hover {
+  text-decoration: underline;
+}
+
+.EcomIDInfo {
+  display: flex;
+  flex-direction: row;
+}
+
+.EcomIDInfo > div > h2 {
+  margin-left: 232px;
+  padding-top: 40px;
+}
+
+.EcomIDContainer {
+  padding-top: 45px;
+  padding-left: 195px;
+}
+
+.EcomIDContainer > p {
+  font-weight: bold;
+}
+
+.EcomIDContainer > a {
+  text-decoration: none;
+  color: rgb(4, 4, 245);
+}
+
+.EcomIDContainer > a:hover {
+  text-decoration: underline;
+}
+
+
+/* 
 .profileContainer {
   display: flex;
   height: 100vh;
@@ -6,7 +243,7 @@
   top: 0%;
   left: 0%;
   max-width: 100%;
-  background-color: white;
+  background-color: rgb(236, 236, 236);
 }
 
 .profileContainer > div {
@@ -126,4 +363,4 @@
     padding: 1vmax;
     margin: 2vmax 0;
   }
-}
+} */
