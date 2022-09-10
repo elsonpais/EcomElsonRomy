@@ -2,7 +2,7 @@
   margin: auto;
   text-align: center;
   padding: 10vmax;
-  height: 50vh;
+  height: 90vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -10,20 +10,31 @@
 }
 .orderSuccess > svg {
   font-size: 7vmax;
-  color: tomato;
+  color: rgb(0, 196, 0);
 }
 .orderSuccess > p {
-  font-size: 2vmax;
+  font: 2vmax Poppins;
 }
-.orderSuccess > a {
-  background-color: rgb(51, 51, 51);
+
+.buttons {
+  margin: 3vmax 0;
+}
+
+.buttons > a {
+  background-color: black;
   color: white;
   border: none;
-  padding: 1vmax 3vmax;
+  padding: 0.8vmax 3vmax;
   cursor: pointer;
-  font: 400 1vmax "Roboto";
+  font: 1.5vmax Poppins;
   text-decoration: none;
   margin: 2vmax;
+  border-radius: 7px;
+}
+
+.buttons > a:hover {
+  background: rgb(41, 41, 41);
+  cursor: pointer;
 }
 
 @media screen and (max-width: 600px) {

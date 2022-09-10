@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap');
+
 .productsPage {
   width: 100%;
   display: flex;
@@ -5,7 +7,7 @@
 }
 
 .filters {
-  background: rgb(241, 241, 241);
+  background: rgb(243, 244, 244);
   display: flex;
   justify-content: space-evenly;
   align-items: center;
@@ -47,12 +49,13 @@
   }
 }
 
-.greyContainer {
-  background: rgb(241, 241, 241);
-  width: 96%;
-  border-radius: 30px;
+.productsContainer {
   margin: 1vmax auto;
-  padding: 0.5vmax 0.5vmax;
+  padding: 0.5vmax 0;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  min-height: 74vh;
 }
 
 .productsHeading {
@@ -64,19 +67,10 @@
   font-size: 3.5vmax;
 }
 
-.products {
-  display: flex;
-  margin: 0 auto;
-  width: 90vw;
-  flex-wrap: wrap;
-  justify-content: center;
-  max-width: 100%;
-}
-
 .paginationBox {
   display: flex;
   justify-content: center;
-  margin: 6vmax;
+  margin: 4vmax auto;
 }
 
 .pagination {
@@ -102,7 +96,7 @@
 }
 .page-link {
   text-decoration: none;
-  font: 300 0.7vmax "Roboto";
+  font: 300 0.95vmax Poppins;
   color: rgb(80, 80, 80);
   transition: all 0.3s;
 }
@@ -116,7 +110,7 @@
 }
 
 .pageItemActive {
-  background-color: tomato;
+  background-color: rgb(63, 63, 63);
 }
 
 .pageLinkActive {
@@ -163,8 +157,14 @@
   .category-link {
     font: 400 1.8vmax "Roboto";
   }
+}
 
-  .products {
-    width: 100vw;
-  }
+.noProducts {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.noProducts > h2 {
+  font: 3vmax Poppins;
 }

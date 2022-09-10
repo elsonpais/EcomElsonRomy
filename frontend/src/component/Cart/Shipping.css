@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap');
+
 .shippingContainer {
   width: 100vw;
   max-width: 100%;
@@ -5,23 +7,25 @@
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  background: rgb(241, 241, 241);
 }
 
 .shippingBox {
   background-color: white;
-  width: 25vw;
-  height: 90vh;
+  width: 35vw;
+  height: fit-content;
   box-sizing: border-box;
   overflow: hidden;
+  margin: 2vmax auto 4vmax;
+  box-shadow: 4px 8px 12px rgba(15, 15, 15, 0.26);
 }
 
 .shippingHeading {
   text-align: center;
-  color: rgba(0, 0, 0, 0.664);
-  font: 400 1.3vmax "Roboto";
+  font: 1.5vmax Poppins;
   padding: 1.3vmax;
   border-bottom: 1px solid rgba(0, 0, 0, 0.205);
-  width: 50%;
+  width: 60%;
   margin: auto;
 }
 
@@ -38,7 +42,7 @@
 
 .shippingForm > div {
   display: flex;
-  width: 100%;
+  width: 80%;
   align-items: center;
 }
 
@@ -48,9 +52,9 @@
   padding-right: 1vmax;
   width: 100%;
   box-sizing: border-box;
-  border: 1px solid rgba(0, 0, 0, 0.267);
-  border-radius: 4px;
-  font: 300 0.9vmax cursive;
+  border: 1px solid rgb(218, 218, 218);
+  font: 1.1vmax Poppins;
+  margin: 0.5vmax auto;
   outline: none;
 }
 
@@ -63,19 +67,20 @@
 
 .shippingBtn {
   border: none;
-  background-color: tomato;
+  background: rgb(4, 116, 228);
   color: white;
-  font: 300 1vmax "Roboto";
-  width: 100%;
-  padding: 1vmax;
+  font: 1.3vmax Poppins;
+  width: 75%;
+  padding: 0.8vmax;
   cursor: pointer;
-  transition: all 0.5s;
+  transition: all 0.2s;
   outline: none;
-  margin: 2vmax;
+  margin: 2vmax auto 1vmax;
+  border-radius: 11px;
 }
 
 .shippingBtn:hover {
-  background-color: rgb(179, 66, 46);
+  background-color: rgb(39, 129, 219);
 }
 
 @media screen and (max-width: 600px) {

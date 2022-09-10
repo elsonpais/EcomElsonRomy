@@ -1,6 +1,6 @@
 import React, { Fragment } from "react";
 import "./Cart.css";
-import CartItemCard from "./CartItemCard";
+// import CartItemCard from "./CartItemCard";
 import { useSelector, useDispatch } from "react-redux";
 import { addItemsToCart, removeItemsFromCart } from "../../actions/cartAction";
 import { Typography } from "@material-ui/core";
@@ -143,10 +143,10 @@ const Cart = ({ history }) => {
                 ) > 1000 ? (
                   <h4>
                     Rs.{" "}
-                    {cartItems.reduce(
+                    {Math.round(cartItems.reduce(
                       (acc, item) => acc + item.quantity * item.price,
                       0
-                    )}
+                    ))}
                     /-
                   </h4>
                 ) : (

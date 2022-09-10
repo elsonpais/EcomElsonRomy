@@ -1,8 +1,8 @@
-import React, { Fragment, useEffect, useRef } from "react";
+import React, { Fragment, useEffect, useRef, useState } from "react";
 import CheckoutSteps from "../Cart/CheckoutSteps";
 import { useSelector, useDispatch } from "react-redux";
 import MetaData from "../layout/MetaData";
-import { Typography } from "@material-ui/core";
+// import { Typography } from "@material-ui/core";
 import { useAlert } from "react-alert";
 import {
   CardNumberElement,
@@ -14,10 +14,11 @@ import {
 
 import axios from "axios";
 import "./payment.css";
-import CreditCardIcon from "@material-ui/icons/CreditCard";
-import EventIcon from "@material-ui/icons/Event";
-import VpnKeyIcon from "@material-ui/icons/VpnKey";
+// import CreditCardIcon from "@material-ui/icons/CreditCard";
+// import EventIcon from "@material-ui/icons/Event";
+// import VpnKeyIcon from "@material-ui/icons/VpnKey";
 import { createOrder, clearErrors } from "../../actions/orderAction";
+// import Collapsible from "react-collapsible";
 
 const Payment = ({ history }) => {
   const orderInfo = JSON.parse(sessionStorage.getItem("orderInfo"));
@@ -45,8 +46,7 @@ const Payment = ({ history }) => {
     totalPrice: orderInfo.totalPrice,
   };
 
-  const submitHandler = async (e) => {
-    e.preventDefault();
+  const submitHandler = async() => {
 
     payBtn.current.disabled = true;
 
@@ -114,33 +114,152 @@ const Payment = ({ history }) => {
     }
   }, [dispatch, error, alert]);
 
+
+  // const collapsibleOptions = {
+  //   triggerStyle: {
+  //     background: "rgb(241,241,241)",
+  //     font: "1.8vmax Poppins",
+  //     display: "inline-block",
+  //     width: "100%",
+  //     margin: "0.5vmax 0",
+  //     borderRadius: "7px",
+  //     cursor: "pointer"
+  //   }
+  // };
+
+  const [showOptions,setShowOptions] = useState(true);
+  const [showCard, setShowCard] = useState(false);
+
+
   return (
     <Fragment>
       <MetaData title="Payment" />
       <CheckoutSteps activeStep={2} />
-      <div className="paymentContainer">
-        <form className="paymentForm" onSubmit={(e) => submitHandler(e)}>
-          <Typography>Card Info</Typography>
-          <div>
-            <CreditCardIcon />
-            <CardNumberElement className="paymentInput" />
+      <div className="paymentPage">
+        <h1>How do you want to pay?</h1>
+        <h2>Select a payment method.</h2>
+        {showOptions && (
+          <div className="paymentCardContainer">
+            <div
+              className="paymentCard"
+              onClick={() => {
+                setShowOptions(false);
+                setShowCard(true);
+              }}
+            >
+              <h3>Credit Card or Debit Card</h3>
+              <p>Visa, Mastercard, PayPal, RuPay</p>
+            </div>
+            <div className="paymentCard">
+              <h3>Net Banking</h3>
+            </div>
+            <div className="paymentCard">
+              <h3>UPI</h3>
+              <p>PhonePe, Paytm, BHIM app, Google pay</p>
+            </div>
+            <div className="paymentCard">
+              <h3>Pay on Delivery</h3>
+            </div>
           </div>
-          <div>
-            <EventIcon />
-            <CardExpiryElement className="paymentInput" />
+        )}
+        {showCard && (
+          <div className="cardContainer">
+            <div className="back">
+              <p>&lt;</p>
+              <p
+                className="backBtn"
+                onClick={() => {
+                  setShowCard(false);
+                  setShowOptions(true);
+                }}
+              >
+                Back
+              </p>
+            </div>
+            <h3>Enter your card information:</h3>
+            <CardNumberElement className="cardNumberInput" />
+            <div className="flex">
+              <CardExpiryElement className="cardExpiryInput" />
+              <CardCvcElement className="cardCvcInput" />
+            </div>
+            <button onClick={()=> submitHandler()} ref={payBtn} className="payBtn">{`Pay  -  Rs. ${
+              orderInfo && orderInfo.totalPrice
+            }/-`}</button>
           </div>
-          <div>
-            <VpnKeyIcon />
-            <CardCvcElement className="paymentInput" />
-          </div>
+        )}
 
-          <input
-            type="submit"
-            value={`Pay - ₹${orderInfo && orderInfo.totalPrice}`}
-            ref={payBtn}
-            className="paymentFormBtn"
-          />
-        </form>
+        {/* <div className="collapsibleContainer">
+          <div className="collapse">
+            <button onClick={() => setIsCreditVisible(!isCreditVisible)}>
+              Credit Card
+            </button>
+            {isCreditVisible && (
+              <div className="credit" id="credit">
+                <form
+                  className="paymentForm"
+                  onSubmit={(e) => submitHandler(e)}
+                >
+                  <div>
+                    <CreditCardIcon className="paymentIcon" />
+                    <CardNumberElement className="paymentInput" />
+                  </div>
+                  <div>
+                    <EventIcon className="paymentIcon" />
+                    <CardExpiryElement className="paymentInput" />
+                  </div>
+                  <div>
+                    <VpnKeyIcon className="paymentIcon" />
+                    <CardCvcElement className="paymentInput" />
+                  </div>
+
+                  <input
+                    type="submit"
+                    value={`Pay  Rs. ${orderInfo && orderInfo.totalPrice}/-`}
+                    ref={payBtn}
+                    className="paymentFormBtn"
+                  />
+                </form>
+              </div>
+            )}
+          </div>
+          <div className="collapse">
+            <button>
+              Debit Card
+            </button>
+            
+          </div>
+          <div className="collapse">
+            <button>
+              Pay on Delivery
+            </button>
+            
+          </div>
+        </div> */}
+
+        {/* <div className="paymentContainer">
+          <form className="paymentForm" onSubmit={(e) => submitHandler(e)}>
+            <Typography>Card Info</Typography>
+            <div>
+              <CreditCardIcon />
+              <CardNumberElement className="paymentInput" />
+            </div>
+            <div>
+              <EventIcon />
+              <CardExpiryElement className="paymentInput" />
+            </div>
+            <div>
+              <VpnKeyIcon />
+              <CardCvcElement className="paymentInput" />
+            </div>
+
+            <input
+              type="submit"
+              value={`Pay - ₹${orderInfo && orderInfo.totalPrice}`}
+              ref={payBtn}
+              className="paymentFormBtn"
+            />
+          </form>
+        </div> */}
       </div>
     </Fragment>
   );

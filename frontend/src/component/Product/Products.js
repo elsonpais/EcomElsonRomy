@@ -3,7 +3,7 @@ import "./Products.css";
 import { useSelector, useDispatch } from "react-redux";
 import { clearErrors, getProduct } from "../../actions/productAction";
 import Loader from "../layout/Loader/Loader";
-import ProductCard from "../Home/ProductCard";
+import ProductCard from "./ProductCard";
 import Pagination from "react-js-pagination";
 import Slider from "@material-ui/core/Slider";
 import { useAlert } from "react-alert";
@@ -11,15 +11,15 @@ import Typography from "@material-ui/core/Typography";
 import MetaData from "../layout/MetaData";
 import Select from "react-select";
 
-const categories = [
-  "Laptop",
-  "Footwear",
-  "Clothing",
-  "Cameras",
-  "SmartPhones",
-  "Appliances",
-  "Beauty",
-];
+ const categories = [
+   "laptop",
+   "footwear",
+   "clothing",
+   "cameras",
+   "smartphones",
+   "appliances",
+   "beauty",
+ ];
 
 const priceRange = [
   "500 and below",
@@ -35,7 +35,7 @@ const Products = ({ match }) => {
   const alert = useAlert();
 
   const [currentPage, setCurrentPage] = useState(1);
-  const [price, setPrice] = useState([0, 500000]);
+  const [price, setPrice] = useState(null);
   const [category, setCategory] = useState("");
 
   const [ratings, setRatings] = useState(0);
@@ -62,17 +62,27 @@ const Products = ({ match }) => {
 
   const changeSelectPrice = (price) => {
     if (price == "500 and below") return([0,500]);
-    else if (price = "500 - 1000") return([500,1000]);
-    else if (price = "1000 - 1500") return([1000,1500]);
-    else if (price = "1500 - 2000") return([1500,2000]);
-    else if (price = "2000 and above") return([2000,500000]);
+    else if (price == "500 - 1000") return([500,1000]);
+    else if (price == "1000 - 1500") return([1000,1500]);
+    else if (price == "1500 - 2000") return([1500,2000]);
+    else if (price == "2000 and above") return([2000,500000]);
+    else if (price == "None") return([0,500000]);
   };
+
+  const changePriceToWords = (price) => {
+    if (price == [0, 500]) return "500 and below";
+    else if (price == [500, 1000]) return "500 - 1000";
+    else if (price == [1000, 1500]) return "1000 - 1500";
+    else if (price == [1500, 2000]) return "1500 - 2000";
+    else if (price == [2000, 500000]) return "2000 and above";
+  }
 
   useEffect(() => {
     if (error) {
       alert.error(error);
       dispatch(clearErrors());
     }
+    console.log(category);
 
     dispatch(getProduct(keyword, currentPage, price, category, ratings));
   }, [dispatch, keyword, currentPage, price, category, ratings, alert, error]);
@@ -90,21 +100,39 @@ const Products = ({ match }) => {
             <div className="filters">
               <div>
                 <h3>Price Range</h3>
-                <select id="priceSelect" onChange={()=> setPrice(changeSelectPrice(document.getElementById("priceSelect")))}>
-                  <option>500 and below</option>
-                  <option>500 - 1000</option>
-                  <option>1000 - 1500</option>
-                  <option>1500 - 2000</option>
-                  <option>2000 and above</option>
+                <select
+                  id="priceSelect"
+                  onChange={() =>
+                    setPrice(document.getElementById("priceSelect").value)
+                  }
+                >
+                  {(price == null) ? <option>None</option> : <option>{price}</option>}
+                  {priceRange.filter((currPrice)=> currPrice !== price).map((priceLabel) => (
+                      <option>{priceLabel}</option>
+                    ))}
+                    {(price != null && price != "None") && <option>None</option>}
                 </select>
               </div>
+              
               <div>
                 <h3>Categories</h3>
-                <select id="categorySelect" onChange={()=> setCategory(document.getElementById('categorySelect').value)}>
+                <select
+                  id="categorySelect"
+                  onChange={() =>
+                    document.getElementById("categorySelect").value != "All"
+                      ? setCategory(
+                          document.getElementById("categorySelect").value
+                        )
+                      : setCategory("")
+                  }
+                >
                   <option>{category || "All"}</option>
-                  {categories.filter((cat)=> cat !== category).map((category) => (
-                    <option>{category}</option>
-                  ))}
+                  {categories
+                    .filter((cat) => cat !== category)
+                    .map((category) => (
+                      <option>{category}</option>
+                    ))}
+                  {category && <option>All</option>}
                 </select>
               </div>
               <div>
@@ -117,16 +145,16 @@ const Products = ({ match }) => {
               </div>
             </div>
 
-            <div className=" productsContainer">
-              {!products ? (
-                <h2>No products match your search.</h2>
-              ) : (
-                <div className="products">
-                  {products &&
-                    products.map((product) => (
-                      <ProductCard key={product._id} product={product} />
-                    ))}
+            <div className="productsContainer">
+              {filteredProductsCount == 0 ? (
+                <div className="noProducts">
+                  <h2>No products match your search.</h2>
                 </div>
+              ) : (
+                products &&
+                products.map((product) => (
+                  <ProductCard key={product._id} product={product} />
+                ))
               )}
             </div>
           </div>
@@ -185,7 +213,7 @@ const Products = ({ match }) => {
                 onChange={setCurrentPageNo}
                 nextPageText="Next"
                 prevPageText="Prev"
-                firstPageText="1st"
+                firstPageText="First"
                 lastPageText="Last"
                 itemClass="page-item"
                 linkClass="page-link"

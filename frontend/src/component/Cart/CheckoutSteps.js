@@ -23,10 +23,11 @@ const CheckoutSteps = ({ activeStep }) => {
 
   const stepStyles = {
     boxSizing: "border-box",
+    background: "rgb(241, 241, 241)"
   };
 
   return (
-    <Fragment>
+    <Fragment className="haha">
       <Stepper alternativeLabel activeStep={activeStep} style={stepStyles}>
         {steps.map((item, index) => (
           <Step
@@ -36,7 +37,8 @@ const CheckoutSteps = ({ activeStep }) => {
           >
             <StepLabel
               style={{
-                color: activeStep >= index ? "tomato" : "rgba(0, 0, 0, 0.649)",
+                color: activeStep >= index ? "blue" : "rgba(0, 0, 0, 0.649)",
+                // backgroundColor: "rgb(241, 241, 241)"
               }}
               icon={item.icon}
             >

@@ -1,7 +1,6 @@
 import React, { Fragment, useEffect } from "react";
-import { CgMouse } from "react-icons/all";
+// import { CgMouse } from "react-icons/all";
 import "./Home.css";
-import ProductCard from "./ProductCard.js";
 import MetaData from "../layout/MetaData";
 import { clearErrors, getProduct } from "../../actions/productAction";
 import { useSelector, useDispatch } from "react-redux";
@@ -10,7 +9,6 @@ import { useAlert } from "react-alert";
 import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
 import { Carousel } from "react-responsive-carousel";
 import { Link } from "react-router-dom";
-import "./ProductCard.css";
 
 // import {Carousel} from "react-bootstrap";
 
@@ -24,6 +22,10 @@ const Home = () => {
     autoPlay: true,
     infiniteLoop: true,
     showThumbs: false,
+    // showIndicators: false,
+    showArrows: false,
+    stopOnHover: false,
+    showStatus: false
   };
 
   const categories = [
@@ -133,42 +135,31 @@ const Home = () => {
               <div>
                 <img
                   alt="banner2"
-                  src="https://res.cloudinary.com/dnkthwagt/image/upload/v1661105238/carousel%20images/banner2_omwu2p.png"
+                  src="https://res.cloudinary.com/dnkthwagt/image/upload/v1661931754/carousel%20images/Stone-Sale-Banner1-scaled_mdglgh.jpg"
                 />
               </div>
               <div>
                 <img
                   alt="banner3"
-                  src="https://res.cloudinary.com/dnkthwagt/image/upload/v1661105238/carousel%20images/banner3_ptban8.png"
+                  src="https://res.cloudinary.com/dnkthwagt/image/upload/v1661930904/carousel%20images/banner3_ptban8_1_cirbc3.png"
                 />
               </div>
               <div>
                 <img
                   alt="banner4"
-                  src="https://res.cloudinary.com/dnkthwagt/image/upload/v1661105238/carousel%20images/banner4_nox56w.png"
+                  src="https://res.cloudinary.com/dnkthwagt/image/upload/v1661932492/carousel%20images/KV_Big-TV-days-1920x1080_ouhwpl.jpg"
                 />
               </div>
               <div>
                 <img
                   alt="banner5"
-                  src="https://res.cloudinary.com/dnkthwagt/image/upload/v1661105237/carousel%20images/banner5_whiy7m.jpg"
+                  src="https://res.cloudinary.com/dnkthwagt/image/upload/v1661934629/carousel%20images/E-lQnL_VgAcSRjK_dyitru.jpg"
                 />
               </div>
             </Carousel>
           </div>
 
-          {/* <div className="banner">
-            <p>Welcome to Ecommerce</p>
-            <h1>FIND AMAZING PRODUCTS BELOW</h1>
-
-            <a href="#container">
-              <button>
-                Scroll <CgMouse />
-              </button>
-            </a>
-          </div> */}
-
-          <div className="greyContainer">
+          <div className="greyContainerHome">
             <div className="categoriesContainer">
               <h2 className="homeHeading">Categories</h2>
               <div className="categoriesList">
@@ -186,40 +177,50 @@ const Home = () => {
             </div>
           </div>
 
-          <div className="greyContainer">
-            <h2 className="homeHeading">Trending Now.</h2>
-            <div className="productsContainer" id="productsContainer">
-              {products &&
-                products
-                  .slice(0, 8)
-                  .map((product) => (
-                    <ProductCard key={product._id} product={product} />
-                  ))}
+          <div className="greyContainerHome">
+            <h2 className="heading">New Arrivals.</h2>
+            <div className="arrivalsContainer">
+              <div className="arrivalsLeft">
+                <img
+                  src="https://res.cloudinary.com/dnkthwagt/image/upload/v1662207964/new%20arrivals/realme_axxney.jpg"
+                  alt="realme 9i 5g"
+                />
+              </div>
+              <div className="arrivalsRight">
+                <div>
+                  <img
+                    src="https://res.cloudinary.com/dnkthwagt/image/upload/v1662209193/new%20arrivals/watch_njjwmi.jpg"
+                    alt="apple watch series 7"
+                  />
+                </div>
+                <div>
+                  <img
+                    src="https://res.cloudinary.com/dnkthwagt/image/upload/v1662210292/new%20arrivals/samsung_miyczy.jpg"
+                    alt="samsung tv"
+                  />
+                </div>
+              </div>
             </div>
-            <button className="productsBtn">View All</button>
           </div>
 
-          <div className="greyContainer">
-            <h2 className="homeHeading">New Arrivals.</h2>
-            <div className="productsContainer" id="productsContainer">
+          <div className="greyContainerHome">
+            <h2 className="heading">Best sellers.</h2>
+            <div className="bestSellersContainer">
               {products &&
-                products
-                  .slice(0, 8)
-                  .map((product) => (
-                    <ProductCard key={product._id} product={product} />
-                  ))}
+                products.slice(0, 4).map((product) => (
+                  <div className="bestSellerProduct">
+                    <div className="bspLeft">
+                      <p className="bspName">{(product.name.length > 40) ? (product.name.substring(0,40) + "...") : (product.name)}</p>
+                      <p className="bspPrice">Rs. {product.price}/-</p>
+                    </div>
+                    <div className="bspRight">
+                      <img className="bspImage" src={product.images[0].url} alt={product.name} />
+                    </div>
+                  </div>
+                ))}
             </div>
-            <button className="productsBtn">View All</button>
           </div>
 
-          {/* <h2 className="homeHeading">Featured Products</h2>
-
-          <div className="productsContainer" id="productsContainer">
-            {products &&
-              products.map((product) => (
-                <ProductCard key={product._id} product={product} />
-              ))}
-          </div> */}
         </Fragment>
       )}
     </Fragment>

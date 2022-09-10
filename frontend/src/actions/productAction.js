@@ -38,21 +38,25 @@ export const getProduct =
     try {
       dispatch({ type: ALL_PRODUCT_REQUEST });
 
+      if (price == null) price = [0,500000];
+      else if (price == "500 and below") price =  [0, 500];
+      else if (price == "500 - 1000") price =  [500, 1000];
+      else if (price == "1000 - 1500") price =  [1000, 1500];
+      else if (price == "1500 - 2000") price =  [1500, 2000];
+      else if (price == "2000 and above") price =  [2000, 500000];
+      else if (price == "None") price =  [0, 500000];
+
       let link = `/api/v1/products?keyword=${keyword}&page=${currentPage}&ratings[gte]=${ratings}`;
-
-      if (price && category)
+      
+      if ((price != null) && (category != "")) {
         link = `/api/v1/products?keyword=${keyword}&page=${currentPage}&price[gte]=${price[0]}&price[lte]=${price[1]}&category=${category}&ratings[gte]=${ratings}`;
-
-      if (category) {
+      } else if (category) {
         link = `/api/v1/products?keyword=${keyword}&page=${currentPage}&category=${category}&ratings[gte]=${ratings}`;
-      }
-
-      if (price) {
+      } else if (price) {
         link = `/api/v1/products?keyword=${keyword}&page=${currentPage}&price[gte]=${price[0]}&price[lte]=${price[1]}&ratings[gte]=${ratings}`;
       }
 
       const { data } = await axios.get(link);
-      console.log(data);
 
       dispatch({
         type: ALL_PRODUCT_SUCCESS,

@@ -5,12 +5,15 @@
 .greyContainerCart {
   background: rgb(241, 241, 241);
   display: flex;
+  min-height: 92vh;
 }
 
 .cartSection {
   flex: 65%;
   background: white;
   margin: 1.5vmax 1vmax;
+  height: fit-content;
+  border-radius: 10px;
 }
 
 .cartSection > h3 {
@@ -125,6 +128,7 @@
   margin: 1.5vmax 1vmax;
   background: white;
   height: fit-content;
+  border-radius: 10px;
 }
 
 .priceSection > h3 {
@@ -171,15 +175,15 @@
 .checkout > button {
   font-size: 1.7vmax;
   width: 100%;
-  background: yellow;
-  color: black;
+  background: rgb(4, 116, 228);
+  color: white;
   border: none;
   border-radius: 10px;
   padding: 0.4vmax 0vmax;
 }
 
 .checkout > button:hover {
-  background: rgb(233, 233, 0);
+  background: rgb(39, 129, 219);
   cursor: pointer;
 }
 
@@ -187,7 +191,7 @@
   margin: auto;
   text-align: center;
   padding: 10vmax;
-  height: 50vh;
+  height: 92vh;
   display: flex;
   flex-direction: column;
   justify-content: center;

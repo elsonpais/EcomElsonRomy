@@ -4,22 +4,22 @@ import { useSelector } from "react-redux";
 import MetaData from "../layout/MetaData";
 import "./ConfirmOrder.css";
 import { Link } from "react-router-dom";
-import { Typography } from "@material-ui/core";
+// import { Typography } from "@material-ui/core";
 
 const ConfirmOrder = ({ history }) => {
   const { shippingInfo, cartItems } = useSelector((state) => state.cart);
   const { user } = useSelector((state) => state.user);
 
-  const subtotal = cartItems.reduce(
+  const subtotal = Math.round(cartItems.reduce(
     (acc, item) => acc + item.quantity * item.price,
     0
-  );
+  ));
 
-  const shippingCharges = subtotal > 1000 ? 0 : 200;
+  const shippingCharges = subtotal > 1000 ? 0 : 50;
 
-  const tax = subtotal * 0.18;
+  const tax = Math.round(subtotal * 0.18);
 
-  const totalPrice = subtotal + tax + shippingCharges;
+  const totalPrice = Math.round(subtotal + tax + shippingCharges);
 
   const address = `${shippingInfo.address}, ${shippingInfo.city}, ${shippingInfo.state}, ${shippingInfo.pinCode}, ${shippingInfo.country}`;
 
@@ -41,9 +41,9 @@ const ConfirmOrder = ({ history }) => {
       <MetaData title="Confirm Order" />
       <CheckoutSteps activeStep={1} />
       <div className="confirmOrderPage">
-        <div>
+        <div className="left">
           <div className="confirmshippingArea">
-            <Typography>Shipping Info</Typography>
+            <h2>Shipping Info</h2>
             <div className="confirmshippingAreaBox">
               <div>
                 <p>Name:</p>
@@ -57,10 +57,17 @@ const ConfirmOrder = ({ history }) => {
                 <p>Address:</p>
                 <span>{address}</span>
               </div>
+              <div className="edit">
+                <button onClick={() => history.push("/shipping")}>Edit</button>
+              </div>
             </div>
           </div>
           <div className="confirmCartItems">
-            <Typography>Your Cart Items:</Typography>
+            <h2>Your Cart Items</h2>
+            <div className="cartHeader">
+              <p>Items</p>
+              <p>Quantity X Price</p>
+            </div>
             <div className="confirmCartItemsContainer">
               {cartItems &&
                 cartItems.map((item) => (
@@ -70,38 +77,47 @@ const ConfirmOrder = ({ history }) => {
                       {item.name}
                     </Link>{" "}
                     <span>
-                      {item.quantity} X ₹{item.price} ={" "}
-                      <b>₹{item.price * item.quantity}</b>
+                      {item.quantity} X Rs. {item.price} ={" "}
+                      <b>Rs. {item.price * item.quantity}/-</b>
                     </span>
                   </div>
                 ))}
             </div>
+            <div className="edit2">
+              <button onClick={() => history.push("/cart")}>Edit</button>
+            </div>
           </div>
         </div>
         {/*  */}
-        <div>
+        <div className="right">
           <div className="orderSummary">
-            <Typography>Order Summery</Typography>
+            <h3>Order Summary</h3>
             <div>
               <div>
-                <p>Subtotal:</p>
-                <span>₹{subtotal}</span>
+                <p>Subtotal</p>
+                <span>Rs. {subtotal}/-</span>
               </div>
               <div>
-                <p>Shipping Charges:</p>
-                <span>₹{shippingCharges}</span>
+                <p>Shipping Charges</p>
+                {shippingCharges > 0 ? (
+                  <span>Rs. {shippingCharges}/-</span>
+                ) : (
+                  <h5 className="free">Free</h5>
+                )}
               </div>
               <div>
-                <p>GST:</p>
-                <span>₹{tax}</span>
+                <p>GST</p>
+                <span>Rs. {tax}/-</span>
               </div>
             </div>
 
             <div className="orderSummaryTotal">
               <p>
-                <b>Total:</b>
+                <b>Total</b>
               </p>
-              <span>₹{totalPrice}</span>
+              <b>
+                <span>Rs. {totalPrice}/-</span>
+              </b>
             </div>
 
             <button onClick={proceedToPayment}>Proceed To Payment</button>
