@@ -1,18 +1,35 @@
 .myOrdersPage {
   width: 100vw;
   max-width: 100%;
-  padding: 0 7vmax;
   box-sizing: border-box;
-  background-color: rgb(235, 235, 235);
-  position: fixed;
+  background-color: white;
   top: 0;
   left: 0;
-  height: 100vh;
-  display: flex;
-  flex-direction: column;
+  padding-left: 14.9vw;
+  padding-right: 14.9vw;
+  padding-top: 11vh;
+}
+/* 
+.OrderHeading {
+  background-color: greenyellow;
+} */
+
+.OrderHeading > p {
+  font-size: xx-large;
+  font-weight: bolder;
 }
 
-#myOrdersHeading {
+.OrderProductContainer {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  height: auto;
+  padding-top: 4vh;
+  flex-basis: 100%;
+  padding-bottom: 3vh;
+}
+
+/* #myOrdersHeading {
   text-align: center;
   font: 400 1.2vmax "Roboto";
   padding: 0.5vmax;
@@ -77,4 +94,4 @@
   .MuiDataGrid-columnHeader div {
     font: 500 5vw "Roboto" !important;
   }
-}
+} */

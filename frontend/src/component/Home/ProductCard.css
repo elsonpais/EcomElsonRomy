@@ -82,6 +82,6 @@
 
     .productCard>div>span {
         margin: 0 0.5vmax;
-        font: 300 1vmax "Roboto";
+        font: 300 1vmax Poppins;
     }
 }

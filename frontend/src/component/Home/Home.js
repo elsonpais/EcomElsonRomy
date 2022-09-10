@@ -8,12 +8,16 @@ import { useSelector, useDispatch } from "react-redux";
 import Loader from "../layout/Loader/Loader";
 import { useAlert } from "react-alert";
 import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
-import { Carousel } from "react-responsive-carousel";
+import ReactDOM from "react-dom";
+import Slider from "react-elastic-carousel";
 import { Link } from "react-router-dom";
 import "./ProductCard.css";
+import Item from "./Item"; 
+import {Carousel} from "react-responsive-carousel";
 
-// import {Carousel} from "react-bootstrap";
-
+const sliderOptions = {
+  pagination: false
+}
 
 const Home = () => {
   const alert = useAlert();
@@ -25,6 +29,13 @@ const Home = () => {
     infiniteLoop: true,
     showThumbs: false,
   };
+
+  const breakPoints = [
+    { width: 1, itemsToShow: 1 },
+    { width: 550, itemsToShow: 2 },
+    { width: 768, itemsToShow: 3 },
+    { width: 1200, itemsToShow: 4 },
+  ];
 
   const categories = [
     {
@@ -168,23 +179,27 @@ const Home = () => {
             </a>
           </div> */}
 
-          <div className="greyContainer">
+          {/* <div className="greyContainer"> */}
             <div className="categoriesContainer">
               <h2 className="homeHeading">Categories</h2>
-              <div className="categoriesList">
-                {categories.map((category) => (
-                  <Link className="category">
-                    <img
-                      className="categoryIcon"
-                      alt={category.name}
-                      src={category.iconUrl}
-                    />
-                    <p className="categoryName">{category.name}</p>
-                  </Link>
-                ))}
-              </div>
+                <Slider breakPoints={breakPoints} {...sliderOptions}>
+                  {/* <div className="categoriesList"> */}
+                  {categories.map((category) => ( 
+                    <Link className="category">
+                      <Item>
+                        <img
+                          className="categoryIcon"
+                          alt={category.name}
+                          src={category.iconUrl}
+                        />
+                        <p className="categoryName">{category.name}</p>
+                      </Item>
+                    </Link>
+                  ))}
+                  {/* </div> */}
+                </Slider>
             </div>
-          </div>
+          {/* </div> */}
 
           <div className="greyContainer">
             <h2 className="homeHeading">Trending Now.</h2>

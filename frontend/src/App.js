@@ -72,7 +72,7 @@ function App() {
 
   return (
     <Router>
-      {/* <Header /> */}
+      <Header />
 
       {isAuthenticated && <UserOptions user={user} />}
 
@@ -122,7 +122,7 @@ function App() {
 
         <ProtectedRoute exact path="/order/:id" component={OrderDetails} />
 
-        <ProtectedRoute
+        <ProtectedRoute 
           isAdmin={true}
           exact
           path="/admin/dashboard"
