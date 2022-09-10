@@ -40,35 +40,65 @@ import {IoClose} from "react-icons/io5"
 //   cartIconMargin: "1vmax",
 // };
 
-const Header = () => {
+const Header = ({history}) => {
   const navRef = useRef();
   const searchRef = useRef();
   // const closeButton = document.querySelector(".search-container .close-search");
+  const searchvisi = useRef();
+  const closeButton = document.querySelector(".search-container .close-search");
 
   const showNavbar = () => {
     navRef.current.classList.toggle("responsive_nav")
   }
   const searchBtn = () => {
+    searchvisi.current.classList.add("hide")
     navRef.current.classList.add("hide")
     searchRef.current.classList.remove("hide")
   }
   const close_search = () => {
+    searchvisi.current.classList.remove("hide")
     navRef.current.classList.remove("hide")
     searchRef.current.classList.add("hide")
+  }
+
+  const homeNavBtn = () => {
+    history.push("/");
+  }
+
+  const cartNavBtn = () => {
+    history.push("/cart");
+  }
+
+  const profileBtn = () => {
+    history.push("/account");
   }
 
   return (<> 
     <header>
       <div className="orange_nav"><img src="https://th.bing.com/th/id/R.fcb07201723665e2b3073a21430dd62a?rik=AeI5ifj%2bJweb3g&riu=http%3a%2f%2fwww.baltana.com%2ffiles%2fwallpapers-10%2fOrange-Abstract-Shape-Background-Wallpaper-28389.jpg&ehk=ypjsA6IOuR1FFjY9MfrTGTf%2bSrYlmzV%2b47HJC8fJ1KM%3d&risl=&pid=ImgRaw&r=0"></img></div>
-      <h3 className="logo">LOGO</h3>
-      <nav ref={navRef}>
-        
-        <a href=""><ImHome className="minicon1"/>Home</a>
-        <a href=""><ImCart className="minicon2"/>Cart</a>
-        <a href=""><FaUserAlt className="minicon3"/>Profile</a> 
+      <div className="logo">
+        <h3>LOGO</h3>
+      </div>
+      
+      <div ref={searchvisi} className="searchBtn">
         <a onClick={searchBtn}><AiOutlineSearch className="icon" /></a>
-        <button className="nav-btn nav-close-btn" onClick={showNavbar}><FaTimes/></button>
-      </nav>
+      </div>
+
+      
+        <nav ref={navRef}>
+            <div className="HomeNav">
+              <button onClick={homeNavBtn}><ImHome className="minicon1"/></button>
+            </div>
+            <div className="CartNav">
+              <button onClick={cartNavBtn}><ImCart className="minicon2"/></button>
+            </div>
+            <div className="ProfileNav">
+              <button onClick={profileBtn}><FaUserAlt className="minicon3"/></button>
+            </div> 
+          <button className="nav-btn nav-close-btn" onClick={showNavbar}><FaTimes/></button>
+        </nav>
+      
+
       <div ref={searchRef} class="search-container hide">
 		   			<div class="search"></div>
 		   			<div class="search-bar">

@@ -13,18 +13,18 @@
   align-items: center;
 }
 
-.filters > div {
+.filters>div {
   display: flex;
   margin: 1.5vmax 0;
   padding: 0 1vmax;
 }
 
-.filters > div > h3 {
+.filters>div>h3 {
   font: 1.5vmax Poppins;
   margin-right: 1vmax;
 }
 
-.filters > div > select {
+.filters>div>select {
   padding: 0 1vmax;
   font: 1.1vmax Poppins;
   border: 1px solid rgb(219, 219, 219);
@@ -39,11 +39,11 @@
     width: 95%;
   }
 
-  .filters > div > h3 {
+  .filters>div>h3 {
     font-size: 1.8vmax;
   }
 
-  .filters > div > select {
+  .filters>div>select {
     font-size: 1.2vmax;
     padding: 0.5vmax 0.5vmax;
   }
@@ -87,6 +87,7 @@
   transition: all 0.3s;
   cursor: pointer;
 }
+
 .page-item:first-child {
   border-radius: 5px 0 0 5px;
 }
@@ -94,6 +95,7 @@
 .page-item:last-child {
   border-radius: 0 5px 5px 0;
 }
+
 .page-link {
   text-decoration: none;
   font: 300 0.95vmax Poppins;
@@ -136,11 +138,12 @@
   cursor: pointer;
   transition: all 0.5s;
 }
+
 .category-link:hover {
   color: tomato;
 }
 
-.filterBox > fieldset {
+.filterBox>fieldset {
   border: 1px solid rgba(0, 0, 0, 0.329);
 }
 
@@ -154,6 +157,7 @@
   .page-link {
     font: 300 1.7vmax "Roboto";
   }
+
   .category-link {
     font: 400 1.8vmax "Roboto";
   }
@@ -165,6 +169,6 @@
   align-items: center;
 }
 
-.noProducts > h2 {
+.noProducts>h2 {
   font: 3vmax Poppins;
 }

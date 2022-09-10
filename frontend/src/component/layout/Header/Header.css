@@ -8,32 +8,128 @@
 }
 
 header {
+  position: fixed;
   top: 0;
   left: 0;
   z-index: 4;
   display: flex;
+  flex-direction: row;
+  justify-content: center;
   align-items: center;
   justify-content: space-between;
-  height: 65px;
+  text-align: center;
+  height: 8vh;
   width: 100%;
   overflow: hidden;
-  padding: 0 2rem;
   background-color: black;
-  color: azure;
+  color: white;
 }
 
-header h3 {
+.logo {
+  position: fixed;
+  /* position: sticky; */
+  left: 0;
+  margin-left: 3vmax;
+}
+
+/* header h3 {
   position: relative;
   float: left;
-}
+} */
 
-header nav {
+/* header nav {
   display: flex;
   align-items: flex-end;
   align-items: center;
   margin-left: 60%;
   overflow: hidden;
   width: 100vw;
+} */
+
+/* .navContent {
+  position: relative;
+  right: 0;
+} */
+
+.searchBtn {
+  position: fixed;
+  right: 0;
+  margin-right: 15vw;
+  opacity: 1;
+  text-align: center;
+}
+
+.searchBtn.hide {
+	opacity: 0;
+	pointer-events: none;
+}
+
+nav {
+  position: fixed;
+  right: 0;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  justify-items: center;
+  align-items: center;
+  text-align: center;
+  margin-right: 0.5vmax;
+}
+
+.HomeNav {
+  display: flex;
+  flex-direction: column;
+  margin-right: 3.1vmax;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+}
+
+.HomeNav > button {
+  text-decoration: none;
+  color: white;
+  opacity: 0.8;
+  text-align: center;
+  background-color: black;
+  justify-content: center;
+  align-items: center;
+}
+
+.CartNav {
+  display: flex;
+  flex-direction: column;
+  margin-right: 3vmax;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+}
+
+.CartNav > button {
+  text-decoration: none;
+  color: white;
+  opacity: 0.8;
+  text-align: center;
+  background-color: black;
+  justify-content: center;
+  align-items: center;
+}
+
+.ProfileNav {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+}
+
+.ProfileNav > button {
+  text-decoration: none;
+  color: white;
+  opacity: 0.8;
+  text-align: center;
+  background-color: black;
+  justify-content: center;
+  align-items: center;
 }
 
 nav.hide {
@@ -41,16 +137,16 @@ nav.hide {
 	pointer-events: none;
 }
 
-nav a {
+/* nav a {
   margin: 0 2rem;
   color: azure;
   text-decoration: none;
   opacity: 0.7;
-  transition-delay: 250ms;
-}
+} */
 
-nav a:hover {
+nav button:hover {
   opacity: 1;
+  cursor: pointer;
 }
 
 header .logo {
@@ -58,12 +154,12 @@ header .logo {
 }
 
 header .nav-btn {
-  padding: 5px;
+  /* padding: 5px; */
   cursor: pointer;
   background: transparent;
   border: none;
   outline: none;
-  color: aliceblue;
+  color: white;
   visibility: hidden;
   opacity: 0;
   font-size: 1.8rem;
@@ -84,7 +180,6 @@ header .search_icon img{
 }
 
 header .orange_nav img {
-
   height: 80px; 
   transform: translateX(-200vh);
 }
@@ -102,7 +197,6 @@ header .orange_nav {
 		transform: translateX(600vh);
 		opacity: 0.5;
 	}
-  
 }
 
 .search_icon {
@@ -120,18 +214,21 @@ header .orange_nav {
 }
 
 .minicon1 {
-  margin-left: 16px;
-  margin-bottom: -7px;
+  /* margin-left: 16px;
+  margin-bottom: -7px; */
+  font-size: large;
 }
 
 .minicon2 {
-  margin-left: 8px;
-  margin-bottom: -7px;
+  /* margin-left: 8px;
+  margin-bottom: -7px; */
+  font-size: large;
 }
 
 .minicon3 {
-  margin-left: 12px;
-  margin-bottom: -7px;
+  /* margin-left: 12px;
+  margin-bottom: -7px; */
+  font-size: large;
 }
 
 .search-container.hide {
@@ -147,7 +244,9 @@ header .orange_nav {
 	left: 0;
 	right: 0;
 	z-index: 200;
-  margin-top: 15px;
+  align-items: center;
+  text-align: center;
+  margin-top: 1.5vh;
 }
 .search-container .search {
 	position: absolute;
@@ -171,13 +270,13 @@ header .orange_nav {
   border-radius: 10px;
 }
 .close-search {
-	/* background: url('https://vignette.wikia.nocookie.net/ru.starwars/images/7/7e/Ico_close.png/revision/latest?cb=20171228124525'); */
 	display: block;
 	background-position: center;
 	background-size: 20px;
 	background-repeat: no-repeat;
 	font-size: medium;
   margin-top: 12px;
+  opacity: 0.8;
 }
 .search-container .close-search {
 	position: absolute;
@@ -189,6 +288,10 @@ header .orange_nav {
 }
 .search-container .close:hover {
 	opacity: 0.7;
+}
+
+.search-bar > form > input {
+  color: black;
 }
 
 @media only screen and (max-width: 1024px) {

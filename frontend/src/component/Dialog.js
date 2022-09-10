@@ -1,53 +1,46 @@
-import React, { Component } from 'react';
+// import React, { useState } from "react";
+// import "./Dialog.css";
 
-let dialogStyles = {
-    width: '500px',
-    maxWidth: '100%',
-    margin: '0 auto',
-    position: 'fixed',
-    left: '50%',
-    top: '50%',
-    transform: 'translate(-50%,-50%)',
-    zIndex: '999',
-    backgroundColor: '#eee',
-    padding: '10px 20px 40px',
-    borderRadius: '8px',
-    display: 'flex',
-    flexDirection: 'column'
-};
+// const Dialog = () => {
+//   const [modal, setModal] = useState(false);
 
-let dialogCloseButtonStyles = {
-    marginBottom: '15px',
-    padding: '3px 8px',
-    cursor: 'pointer',
-    borderRadius: '50%',
-    border: 'none',
-    width: '30px',
-    height: '30px',
-    fontWeight: 'bold',
-    alignSelf: 'flex-end'
-};
+//   const toggleModal = () => {
+//     setModal(!modal);
+//   }; 
 
+//   if(modal) {
+//     document.body.classList.add('active-modal')
+//   } else {
+//     document.body.classList.remove('active-modal')
+//   }
 
-class Dialog extends Component {
-    render() {
-        let dialog = (
-            <div style={dialogStyles}>
-                <button style={dialogCloseButtonStyles} onClick={this.props.onClose}>x</button>
+//   return (
+//     <>
+//       {/* <button onClick={toggleModal} className="btn-modal">
+//         Open
+//       </button> */}
 
-                <div>{this.props.children}</div>
-            </div>
-        );
+//       {modal && (
+//         <div className="modal">
+//           <div onClick={toggleModal} className="overlay"></div>
+//           <div className="modal-content">
+//             <h2>Hello Modal</h2>
+//             <p>
+//               Lorem ipsum dolor sit amet consectetur adipisicing elit. Provident
+//               perferendis suscipit officia recusandae, eveniet quaerat assumenda
+//               id fugit, dignissimos maxime non natus placeat illo iusto!
+//               Sapiente dolorum id maiores dolores? Illum pariatur possimus
+//               quaerat ipsum quos molestiae rem aspernatur dicta tenetur. Sunt
+//               placeat tempora vitae enim incidunt porro fuga ea.
+//             </p>
+//             <button className="close-modal" onClick={toggleModal}>
+//               CLOSE
+//             </button>
+//           </div>
+//         </div>
+//       )}
+//     </>
+//   );
+// }
 
-        if (! this.props.isOpen) {
-            dialog = null;
-        }
-        return (
-            <div>
-                {dialog}
-            </div>
-        );
-    }
-}
-
-export default Dialog;
+// export default Dialog;

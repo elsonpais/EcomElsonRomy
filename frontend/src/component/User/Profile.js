@@ -1,14 +1,57 @@
-import React, { Fragment, useEffect } from "react";
+import React, { Fragment, useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import MetaData from "../layout/MetaData";
 import Loader from "../layout/Loader/Loader";
 import { Link } from "react-router-dom";
 import "./Profile.css";
 import Header from "../layout/Header/Header.js"
-import Dialog from '../Dialog.js';
+import Dialog from '../Dialog.js'; 
 import { Component } from 'react';
+import { logout } from "../../actions/userAction";
+import { useDispatch } from "react-redux";
+import {MdClose} from "react-icons/md" 
+import { Country, State } from "country-state-city";
+import { saveShippingInfo } from "../../actions/cartAction"; 
 
 const Profile = ({ history }) => {
+
+  const { shippingInfo } = useSelector((state) => state.cart);
+
+  const [address, setAddress] = useState(shippingInfo.address);
+  const [city, setCity] = useState(shippingInfo.city);
+  const [addressState, setAddressState] = useState(shippingInfo.state);
+  const [country, setCountry] = useState(shippingInfo.country);
+  const [pinCode, setPinCode] = useState(shippingInfo.pinCode);
+  const [phoneNo, setPhoneNo] = useState(shippingInfo.phoneNo);
+
+  const [modal, setModal] = useState(false); 
+  const [modal2, setModal2] = useState(false);
+
+  const toggleModal = () => {
+    setModal(!modal);
+
+    if(modal) {
+      document.body.classList.add('active-modal')
+      //document.getElementsByClassName('modal2').style.visibility='hidden';
+      //document.getElementsByClassName('modal-content2').style.visibility='hidden';
+    } else { 
+      document.body.classList.remove('active-modal')
+    }
+  };
+
+  
+  const toggleModal2 = () => {
+    setModal2(!modal2);
+
+    if(modal2) {
+      document.body.classList.add('active-modal2') 
+      //document.getElementsByClassName('modal').style.visibility='hidden';
+      //document.getElementsByClassName('modal-content1').style.visibility='hidden';
+    } else {
+      document.body.classList.remove('active-modal2')
+    } 
+  };
+
   const { user, loading, isAuthenticated } = useSelector((state) => state.user);
 
   useEffect(() => {
@@ -19,6 +62,27 @@ const Profile = ({ history }) => {
 
   const state = {
     isOpen: false
+  }
+
+  const dispatch = useDispatch();
+
+  // const options = [
+  //   { icon: <ExitToAppIcon />, name: "Logout", func: logoutUser },
+  // ];
+
+  function logoutUser() {
+    dispatch(logout());
+    alert.success("Logout Successfully");
+  }
+
+  const saveShipping = () => {
+    if (phoneNo.length < 10 || phoneNo.length > 10) {
+      alert.error("Phone Number should be 10 digits Long");
+      return;
+    }
+    dispatch(
+      saveShippingInfo({ address, city, state, country, pinCode, phoneNo })
+    );
   }
 
   return (
@@ -61,13 +125,10 @@ const Profile = ({ history }) => {
 
     <Fragment>
       <div className="profilePage">
-
-      
-
         <div className="parent">
           <div className="header2">
             <h2>Account</h2>
-            <a href="">Sign Out ></a>
+            <a onClick={() => logoutUser()}>Sign Out &gt;</a>
           </div>
           <h1>Hi {user.name}.</h1>
         </div>
@@ -81,12 +142,12 @@ const Profile = ({ history }) => {
           <div className="orderCard">
             <h1>Your Orders</h1>
             <p>Track, modify, or cancel an order or make a return.</p>
-            <a href="">See your order history ></a>
+            <a href="">See your order history &gt;</a>
           </div>
           <div className="soCard">
             <h1>Change Password</h1>
             <p>A password change a day keeps the intruder away</p>
-            <a href="">Change Password ></a>
+            <a href="">Change Password &gt;</a>
           </div>
         </div>
         <div className="accountSettings">
@@ -97,14 +158,14 @@ const Profile = ({ history }) => {
             <div className="shippingAddr">
               <h4>Shipping Address</h4>
               <p>{user.name}</p>
-              <p>India</p>
-              <a onClick={(e) => this.setState({ isOpen: true })} >Edit</a>
+              <p>India</p> 
+              <a onClick={ () => toggleModal()} className="" >Edit</a>
             </div>
 
             <div className="contactInfo">
               <h4>Contact information</h4>
               <p>{user.email}</p>
-              <a href="">Edit</a>
+              <a onClick={ () => toggleModal2()}>Edit</a>
             </div>
           </div>
 
@@ -116,7 +177,7 @@ const Profile = ({ history }) => {
               <p>
                 You're in control of your personal information and can manage your data or delete your account at any time. Apple is committed to protecting your privacy.
               </p>
-              <a href="">Manage my personal information ></a>
+              <a href="">Manage my personal information &gt;</a>
             </div>
           </div> 
 
@@ -129,9 +190,107 @@ const Profile = ({ history }) => {
             </div>
           </div>
         </div>
-
-        <Dialog show = {true}></Dialog>
       </div>
+      {/* <Dialog/> */}
+      {modal && (
+        <div className="modal">
+          <div onClick={toggleModal} className="overlay"></div>
+          <div className="modal-content">
+            <h1>Edit your shipping address.</h1>
+            {/* <input placeholder="Address Line 1"></input>
+            <input placeholder="Address Line 2 (Optional)"></input>
+            <input placeholder="PIN code"></input>
+            <input  placeholder="City, State"></input>
+            <input placeholder="Country"></input>  */}
+            
+              <input
+                type="text"
+                placeholder="Address"
+                required
+                value={address}
+                onChange={(e) => setAddress(e.target.value)}
+              />
+
+              <input
+                type="text"
+                placeholder="City"
+                required
+                value={city}
+                onChange={(e) => setCity(e.target.value)}
+              />
+            
+              <input
+                type="number"
+                placeholder="Pin Code"
+                required
+                value={pinCode}
+                onChange={(e) => setPinCode(e.target.value)}
+              />
+            
+              <input
+                type="number"
+                placeholder="Phone Number"
+                required
+                value={phoneNo}
+                onChange={(e) => setPhoneNo(e.target.value)}
+                size="10"
+              />
+            
+
+              <select
+                required
+                value={country}
+                onChange={(e) => setCountry(e.target.value)}
+              >
+                <option value="">Country</option>
+                {Country &&
+                  Country.getAllCountries().map((item) => (
+                    <option key={item.isoCode} value={item.isoCode}>
+                      {item.name}
+                    </option>
+                  ))}
+              </select>
+
+            {country && (
+
+                <select
+                  required
+                  value={addressState}
+                  onChange={(e) => setAddressState(e.target.value)}
+                >
+                  <option value="">State</option>
+                  {State &&
+                    State.getStatesOfCountry(country).map((item) => (
+                      <option key={item.isoCode} value={item.isoCode}>
+                        {item.name}
+                      </option>
+                    ))}
+                </select>)}
+
+            <button onClick={() => saveShipping() } className="SaveBtn">Save</button>
+            <button className="CancelBtn">Cancel</button>
+            <button className="close-modal" onClick={toggleModal}>
+              <MdClose/>
+            </button>
+          </div>
+        </div>
+      )}
+
+{modal2 && (
+        <div className="modal2">
+          <div onClick={toggleModal2} className="overlay2"></div>
+          <div className="modal-content2">
+            <h1>Edit your contact information.</h1>
+            <input placeholder="First Name"></input>
+            <input placeholder="Last Name"></input>
+            <button className="SaveBtn2">Save</button>
+            <button className="CancelBtn2">Cancel</button>
+            <button className="close-modal2" onClick={toggleModal2}>
+              <MdClose/>
+            </button>
+          </div>
+        </div>
+      )}
     </Fragment>
   );
 };

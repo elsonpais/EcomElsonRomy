@@ -22,7 +22,7 @@ import {
 import { Rating } from "@material-ui/lab";
 import { NEW_REVIEW_RESET } from "../../constants/productConstants";
 
-const ProductDetails = ({ match }) => {
+const ProductDetails = ({ match, history }) => {
   const dispatch = useDispatch();
   const alert = useAlert();
 
@@ -56,7 +56,7 @@ const ProductDetails = ({ match }) => {
   const decreaseQuantity = () => {
     if (1 >= quantity) return;
 
-    const qty = quantity - 1;
+    const qty = quantity - 1; 
     setQuantity(qty);
   };
 
@@ -64,6 +64,10 @@ const ProductDetails = ({ match }) => {
     dispatch(addItemsToCart(match.params.id, quantity));
     alert.success("Item Added To Cart");
   };
+
+  const buyNowBtn = () => {
+    history.push("/shipping") 
+  }
 
   // const submitReviewToggle = () => {
   //   open ? setOpen(false) : setOpen(true);
@@ -120,7 +124,7 @@ const ProductDetails = ({ match }) => {
                     ))}
               </div>
 
-              <div>
+              <div className="carouselContainer1">
               <Carousel interval={100000000} className="carouselContainer">
                 {product.images &&
                   product.images.map((item, i) => (
@@ -164,7 +168,7 @@ const ProductDetails = ({ match }) => {
 
                 <button className="BuyNowBtn"
                     disabled={product.Stock < 1 ? true : false}
-                    onClick={addToCartHandler}>BUY NOW</button>
+                    onClick={buyNowBtn}>BUY NOW</button>
 
                 <p>
                   <b className={product.Stock < 1 ? "redColor" : "greenColor"}>

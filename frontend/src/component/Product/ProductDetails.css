@@ -7,13 +7,18 @@
   font-family: 'Poppins', sans-serif;
 }
 
+body {
+  background-color: white;
+}
+
 .ProductDetails {
-  background-color: rgb(255, 255, 255);
+  /* background-color: rgb(255, 0, 0); */
   width: 100vw;
   max-width: 100%;
-  padding: 6vmax;
+  padding: 4vh 2vw;
   box-sizing: border-box;
   display: flex;
+  margin-top: 8vh;
 }
 
 .ProductDetails > div {
@@ -24,7 +29,8 @@
   align-items: center;
   padding: 2vmax;
   box-sizing: border-box;
-  border: 1px solid white;
+  /* border: 1px solid white; */
+  /* background-color: aqua; */
 }
 
 .ProductDetails > div:last-child {
@@ -33,30 +39,39 @@
 
 .imageContainer {
   position: relative;
+  /* background-color: black; */
 }
 
 .imagePreviewContainer {
   position: absolute;
   left: 0;
-  margin-left: 120px;
+  margin-left: 6.5vw;
+  /* background-color: blue; */
+}
+
+.carouselContainer1 {
+  /* background-color: black; */
+  /* margin-bottom: 13vh; */
 }
 
 .carouselContainer {
   position: absolute;
-  margin-left: 120px;
+  margin-left: 10vw;
 }
 
 .imagePreview {
   display: flex;
   height: 7vmax;
   width: 7vmax;
-  margin-top: 10px;
+  /* margin-top: 10px; */
+  object-fit: scale-down;
 }
 
 .CarouselImage {
-  height: 37vmax;
-  width: 37vmax;
+  height: 100%;
+  width: 100%;
   float: right;
+  object-fit: scale-down;
 }
 
 .rightProductDetails{
@@ -239,6 +254,9 @@
 .reviews {
   display: flex;
   overflow: auto;
+  /* background-color: beige; */
+  padding: 3vmax;
+  justify-content: center;
 }
 
 .reviewCard {
@@ -258,7 +276,7 @@
 }
 .reviewCard > p {
   color: rgba(0, 0, 0, 0.836);
-  font: 600 0.9vmax "Roboto";
+  /* font: 600 0.9vmax Poppins; */
 }
 .reviewCardComment {
   color: rgba(0, 0, 0, 0.445);
@@ -269,6 +287,8 @@
   font: 400 1.3vmax "Gill Sans";
   text-align: center;
   color: rgba(0, 0, 0, 0.548);
+  /* background-color: black; */
+  padding: 3vmax;
 }
 
 @media screen and (max-width: 600px) {
