@@ -170,7 +170,7 @@ const Home = () => {
             </Carousel>
           </div>
 
-          <div className="greyContainerHome">
+          {/* <div className="greyContainerHome"> */}
             <div className="categoriesContainer">
               <h2 className="homeHeading">Categories</h2>
                 <Slider breakPoints={breakPoints} {...sliderOptions}>
@@ -190,7 +190,7 @@ const Home = () => {
                   {/* </div> */}
                 </Slider>
             </div>
-          </div>
+          {/* </div> */}
 
           <div className="greyContainerHome">
             <h2 className="heading">New Arrivals.</h2>
