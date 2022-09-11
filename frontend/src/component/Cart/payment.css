@@ -4,8 +4,9 @@ body {
 
 .paymentPage {
   width: 80%;
-  height: 92vh;
+  min-height: 90vh;
   margin: 0 auto;
+  padding-top: 5vh;
 }
 
 .paymentPage > h1 {

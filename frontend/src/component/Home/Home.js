@@ -26,7 +26,7 @@ const Home = () => {
     autoPlay: true,
     infiniteLoop: true,
     showThumbs: false,
-    // showIndicators: false,
+    showIndicators: false,
     showArrows: false,
     stopOnHover: false,
     showStatus: false
@@ -170,9 +170,9 @@ const Home = () => {
             </Carousel>
           </div>
 
-          <div className="greyContainerHome">
+          {/* <div className="greyContainerHome"> */}
             <div className="categoriesContainer">
-              <h2 className="homeHeading">Categories</h2>
+              <h2>Categories.</h2>
                 <Slider breakPoints={breakPoints} {...sliderOptions}>
                   {/* <div className="categoriesList"> */}
                   {categories.map((category) => ( 
@@ -190,7 +190,7 @@ const Home = () => {
                   {/* </div> */}
                 </Slider>
             </div>
-          </div>
+          {/* </div> */}
 
           <div className="greyContainerHome">
             <h2 className="heading">New Arrivals.</h2>

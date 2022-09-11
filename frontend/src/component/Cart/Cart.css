@@ -2,10 +2,14 @@
   font-family: Poppins;
 }
 
+body {
+  margin-top: 9vh;
+}
+
 .greyContainerCart {
   background: rgb(241, 241, 241);
   display: flex;
-  min-height: 92vh;
+  min-height: 91vh;
 }
 
 .cartSection {

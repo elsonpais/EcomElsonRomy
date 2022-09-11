@@ -48,7 +48,7 @@ export const getProduct =
 
       let link = `/api/v1/products?keyword=${keyword}&page=${currentPage}&ratings[gte]=${ratings}`;
       
-      if ((price != null) && (category != "")) {
+      if (price && category) {
         link = `/api/v1/products?keyword=${keyword}&page=${currentPage}&price[gte]=${price[0]}&price[lte]=${price[1]}&category=${category}&ratings[gte]=${ratings}`;
       } else if (category) {
         link = `/api/v1/products?keyword=${keyword}&page=${currentPage}&category=${category}&ratings[gte]=${ratings}`;

@@ -2,23 +2,27 @@ import React from "react";
 // import playStore from "../../../images/playstore.png";
 // import appStore from "../../../images/Appstore.png";
 import "./Footer.css";
+import { useHistory } from "react-router-dom";
 
 const Footer = () => {
+
+  const history = useHistory();
+
   return (
     <footer id="footer">
       <div className="top">
         <div className="first">
           <h3>Sitemap</h3>
-          <a>Home</a>
-          <a>Products</a>
-          <a>Cart</a>
-          <a>Account</a>
-          <a>Orders</a>
+          <a onClick={() => history.push("/")}>Home</a>
+          <a onClick={() => history.push("/products")}>Products</a>
+          <a onClick={() => history.push("/cart")}>Cart</a>
+          <a onClick={() => history.push("/account")}>Account</a>
+          <a onClick={() => history.push("/orders")}>Orders</a>
         </div>
         <div className="second">
           <h3>Support</h3>
           <a>FAQs</a>
-          <a>Contact Us</a>
+          <a onClick={() => history.push("/contact")}>Contact Us</a>
         </div>
         <div className="third">
           <h3>Be The First To Know</h3>

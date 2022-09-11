@@ -37,6 +37,7 @@ const Products = ({ match }) => {
   const [currentPage, setCurrentPage] = useState(1);
   const [price, setPrice] = useState(null);
   const [category, setCategory] = useState("");
+  const [sortBy, setSortBy] = useState(localStorage.getItem("priceSort"));
 
   const [ratings, setRatings] = useState(0);
 
@@ -106,14 +107,20 @@ const Products = ({ match }) => {
                     setPrice(document.getElementById("priceSelect").value)
                   }
                 >
-                  {(price == null) ? <option>None</option> : <option>{price}</option>}
-                  {priceRange.filter((currPrice)=> currPrice !== price).map((priceLabel) => (
+                  {price == null ? (
+                    <option>None</option>
+                  ) : (
+                    <option>{price}</option>
+                  )}
+                  {priceRange
+                    .filter((currPrice) => currPrice !== price)
+                    .map((priceLabel) => (
                       <option>{priceLabel}</option>
                     ))}
-                    {(price != null && price != "None") && <option>None</option>}
+                  {price != null && price != "None" && <option>None</option>}
                 </select>
               </div>
-              
+
               <div>
                 <h3>Categories</h3>
                 <select
@@ -137,7 +144,17 @@ const Products = ({ match }) => {
               </div>
               <div>
                 <h3>Sort by</h3>
-                <select>
+                <select
+                  id="priceSortSelect"
+                  onChange={() => {
+                      setSortBy(
+                            document.getElementById("priceSortSelect").value
+                          );
+                          localStorage.setItem("priceSort",document.getElementById("priceSortSelect"));
+                      }
+                  }
+                >
+                  <option>None</option>
                   <option>Price - Low to High</option>
                   <option>Price - High to Low</option>
                   <option>Customer Rating</option>
@@ -152,7 +169,17 @@ const Products = ({ match }) => {
                 </div>
               ) : (
                 products &&
-                products.map((product) => (
+                (sortBy == "Price - Low to High"
+                  ? products.sort((a, b) => {
+                      return a.price - b.price;
+                    })
+                  : sortBy == "Price - High to Low"
+                  ? products.sort((a, b) => {
+                      return b.price - a.price;
+                    })
+                  : // : (sortBy == "Customer Rating") ? (products.sort((a,b)=> {return(a.price - b.price)}))
+                    products
+                ).map((product) => (
                   <ProductCard key={product._id} product={product} />
                 ))
               )}

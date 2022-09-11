@@ -1,5 +1,5 @@
 import React, { Fragment, useEffect, useRef, useState } from "react";
-import CheckoutSteps from "../Cart/CheckoutSteps";
+// import CheckoutSteps from "../Cart/CheckoutSteps";
 import { useSelector, useDispatch } from "react-redux";
 import MetaData from "../layout/MetaData";
 // import { Typography } from "@material-ui/core";
@@ -134,7 +134,7 @@ const Payment = ({ history }) => {
   return (
     <Fragment>
       <MetaData title="Payment" />
-      <CheckoutSteps activeStep={2} />
+      {/* <CheckoutSteps activeStep={2} /> */}
       <div className="paymentPage">
         <h1>How do you want to pay?</h1>
         <h2>Select a payment method.</h2>

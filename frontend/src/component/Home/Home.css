@@ -1,5 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap');
 
+body {
+  margin-top: 10vh;
+}
+
 .greyContainerHome {
   background: rgb(243, 244, 244);
   padding: 2.5vmax 0.5vmax;
@@ -9,7 +13,8 @@
 }
 
 .categoriesContainer {
-  font-family: sans-serif;
+  background: rgb(243, 244, 244);
+  font-family: Poppins;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -18,7 +23,15 @@
   /* padding: 5vh 0vw; */
   padding-bottom: 8vh;
   padding-top: 2vh;
-  margin: 1vh 0.6vw;
+  padding-right: 0.6vw;
+  padding-left: 0.6vw;
+  /* margin: 1vh 0.6vw; */
+}
+
+.categoriesContainer > h2 {
+  text-align: center;
+  margin: 3vmax 0;
+  font: bold 3vmax Poppins;
 }
 
 /* .categoriesList {
