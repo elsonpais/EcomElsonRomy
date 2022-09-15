@@ -88,13 +88,14 @@ const Home = () => {
     dispatch(getProduct());
   }, [dispatch, error, alert]);
 
+
   return (
     <Fragment>
       {loading ? (
         <Loader />
       ) : (
         <Fragment>
-          <MetaData title="ECOMMERCE" />
+          <MetaData title="Shoppable" />
 
           {/* <div className="carouselBoot">
             <Carousel>

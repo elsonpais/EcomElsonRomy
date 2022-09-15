@@ -127,44 +127,11 @@ const Header = () => {
   return (
     <>
       <header>
-        {/* <div className="orange_nav"><img src="https://th.bing.com/th/id/R.fcb07201723665e2b3073a21430dd62a?rik=AeI5ifj%2bJweb3g&riu=http%3a%2f%2fwww.baltana.com%2ffiles%2fwallpapers-10%2fOrange-Abstract-Shape-Background-Wallpaper-28389.jpg&ehk=ypjsA6IOuR1FFjY9MfrTGTf%2bSrYlmzV%2b47HJC8fJ1KM%3d&risl=&pid=ImgRaw&r=0"></img></div>
-      <div className="logo">
-        <h3>LOGO</h3>
-      </div>
-      
-      <div ref={searchvisi} className="searchBtn">
-        <a onClick={searchBtn}><AiOutlineSearch className="icon" /></a>
-      </div>
-
-      
-        <nav ref={navRef}>
-            <div className="HomeNav">
-              <button onClick={homeNavBtn}><ImHome className="minicon1"/></button>
-            </div>
-            <div className="CartNav">
-              <button onClick={cartNavBtn}><ImCart className="minicon2"/></button>
-            </div>
-            <div className="ProfileNav">
-              <button onClick={profileBtn}><FaUserAlt className="minicon3"/></button>
-            </div> 
-          <button className="nav-btn nav-close-btn" onClick={showNavbar}><FaTimes/></button>
-        </nav>
-      
-
-      <div ref={searchRef} class="search-container hide">
-		   			<div class="search"></div>
-		   			<div class="search-bar">
-		   				<form>
-		   					<input type="text" placeholder="Search"/>
-		   				</form>
-		   			</div>
-		   			<div onClick={close_search} class="close-search"><IoClose/></div>
-      </div> 
-      <button className="nav-btn" onClick={showNavbar}><FaBars/></button> */}
 
         <nav>
         <div ref={navRef} className="leftNav">
-            <h3>LOGO</h3>
+        <IoCartOutline className="logoIcon" />
+            <h3>SHOPPABLE</h3>
           </div>
         <div ref={navRef} className="orange_nav"><img src="https://th.bing.com/th/id/R.fcb07201723665e2b3073a21430dd62a?rik=AeI5ifj%2bJweb3g&riu=http%3a%2f%2fwww.baltana.com%2ffiles%2fwallpapers-10%2fOrange-Abstract-Shape-Background-Wallpaper-28389.jpg&ehk=ypjsA6IOuR1FFjY9MfrTGTf%2bSrYlmzV%2b47HJC8fJ1KM%3d&risl=&pid=ImgRaw&r=0"></img></div>
           
