@@ -344,10 +344,12 @@ nav {
   display: flex;
   flex-direction: column;
   align-items: center;
+  transition: all 0.3s;
 }
 
 .navBtns > button:hover {
   cursor: pointer;
+  border-bottom: 1px solid white;
 }
 
 .navIcon {

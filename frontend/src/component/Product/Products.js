@@ -34,9 +34,20 @@ const Products = ({ match }) => {
 
   const alert = useAlert();
 
+  let keyword = match.params.keyword;
+  let tempCat;
+  console.log(keyword);
+  if (categories.includes(keyword)) {
+    // setCategory(keyword);
+    tempCat = keyword;
+    keyword = "";
+    // document.getElementById("categorySelect").value = keyword;
+    console.log("category h = " + tempCat);
+  }
+
   const [currentPage, setCurrentPage] = useState(1);
   const [price, setPrice] = useState(null);
-  const [category, setCategory] = useState("");
+  const [category, setCategory] = useState(tempCat || "");
   const [sortBy, setSortBy] = useState(localStorage.getItem("priceSort"));
 
   const [ratings, setRatings] = useState(0);
@@ -50,7 +61,7 @@ const Products = ({ match }) => {
     filteredProductsCount,
   } = useSelector((state) => state.products);
 
-  const keyword = match.params.keyword;
+  
 
   const setCurrentPageNo = (e) => {
     setCurrentPage(e);
@@ -79,6 +90,7 @@ const Products = ({ match }) => {
   }
 
   useEffect(() => {
+    window.scrollTo(0, 0);
     if (error) {
       alert.error(error);
       dispatch(clearErrors());
@@ -86,7 +98,7 @@ const Products = ({ match }) => {
     console.log(category);
 
     dispatch(getProduct(keyword, currentPage, price, category, ratings));
-  }, [dispatch, keyword, currentPage, price, category, ratings, alert, error]);
+  }, [dispatch, keyword, currentPage, price, category, sortBy, ratings, alert, error]);
 
   return (
     <Fragment>
@@ -177,7 +189,8 @@ const Products = ({ match }) => {
                   ? products.sort((a, b) => {
                       return b.price - a.price;
                     })
-                  : // : (sortBy == "Customer Rating") ? (products.sort((a,b)=> {return(a.price - b.price)}))
+                  :  (sortBy == "Customer Rating") ? (products.sort((a,b)=> {return(b.ratings - a.ratings)}))
+                  :
                     products
                 ).map((product) => (
                   <ProductCard key={product._id} product={product} />

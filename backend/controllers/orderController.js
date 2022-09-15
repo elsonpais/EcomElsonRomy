@@ -27,6 +27,12 @@ exports.newOrder = catchAsyncErrors(async (req, res, next) => {
     user: req.user._id,
   });
 
+  orderItems.forEach(async(prod)=> {
+    const product = await Product.findById(prod.product);
+    product.sellCount += prod.quantity;
+    await product.save({ validateBeforeSave: false });
+  });
+
   res.status(201).json({
     success: true,
     order,
@@ -110,6 +116,9 @@ async function updateStock(id, quantity) {
   const product = await Product.findById(id);
 
   product.Stock -= quantity;
+
+  // updating sell count
+  product.sellCount += quantity;
 
   await product.save({ validateBeforeSave: false });
 }

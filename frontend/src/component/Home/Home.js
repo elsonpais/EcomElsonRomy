@@ -12,12 +12,14 @@ import Slider from "react-elastic-carousel";
 import { Link } from "react-router-dom";
 import Item from "./Item"; 
 import {Carousel} from "react-responsive-carousel";
+import { useHistory } from "react-router-dom";
 
 const sliderOptions = {
   pagination: false
 }
 
 const Home = () => {
+  const history = useHistory();
   const alert = useAlert();
   const dispatch = useDispatch();
   const { loading, error, products } = useSelector((state) => state.products);
@@ -80,6 +82,7 @@ const Home = () => {
 
 
   useEffect(() => {
+    window.scrollTo(0,0);
     if (error) {
       alert.error(error);
       dispatch(clearErrors());
@@ -149,12 +152,12 @@ const Home = () => {
                   src="https://res.cloudinary.com/dnkthwagt/image/upload/v1661931754/carousel%20images/Stone-Sale-Banner1-scaled_mdglgh.jpg"
                 />
               </div>
-              <div>
+              {/* <div>
                 <img
                   alt="banner3"
                   src="https://res.cloudinary.com/dnkthwagt/image/upload/v1661930904/carousel%20images/banner3_ptban8_1_cirbc3.png"
                 />
-              </div>
+              </div> */}
               <div>
                 <img
                   alt="banner4"
@@ -171,31 +174,34 @@ const Home = () => {
           </div>
 
           {/* <div className="greyContainerHome"> */}
-            <div className="categoriesContainer">
-              <h2>Categories.</h2>
-                <Slider breakPoints={breakPoints} {...sliderOptions}>
-                  {/* <div className="categoriesList"> */}
-                  {categories.map((category) => ( 
-                    <Link className="category">
-                      <Item>
-                        <img
-                          className="categoryIcon"
-                          alt={category.name}
-                          src={category.iconUrl}
-                        />
-                        <p className="categoryName">{category.name}</p>
-                      </Item>
-                    </Link>
-                  ))}
-                  {/* </div> */}
-                </Slider>
-            </div>
+          <div className="categoriesContainer">
+            <h2>Categories.</h2>
+            <Slider breakPoints={breakPoints} {...sliderOptions}>
+              {/* <div className="categoriesList"> */}
+              {categories.map((category) => (
+                <Link
+                  to={`/products/${category.name.toLowerCase()}`}
+                  className="category"
+                >
+                  <Item>
+                    <img
+                      className="categoryIcon"
+                      alt={category.name}
+                      src={category.iconUrl}
+                    />
+                    <p className="categoryName">{category.name}</p>
+                  </Item>
+                </Link>
+              ))}
+              {/* </div> */}
+            </Slider>
+          </div>
           {/* </div> */}
 
           <div className="greyContainerHome">
             <h2 className="heading">New Arrivals.</h2>
             <div className="arrivalsContainer">
-              <div className="arrivalsLeft">
+              <div className="arrivalsLeft" onClick={()=> history.push("product/6323784c80fa7626d07652d8")}>
                 <img
                   src="https://res.cloudinary.com/dnkthwagt/image/upload/v1662207964/new%20arrivals/realme_axxney.jpg"
                   alt="realme 9i 5g"
@@ -222,20 +228,35 @@ const Home = () => {
             <h2 className="heading">Best sellers.</h2>
             <div className="bestSellersContainer">
               {products &&
-                products.slice(0, 4).map((product) => (
-                  <div className="bestSellerProduct">
-                    <div className="bspLeft">
-                      <p className="bspName">{(product.name.length > 40) ? (product.name.substring(0,40) + "...") : (product.name)}</p>
-                      <p className="bspPrice">Rs. {product.price}/-</p>
+                products
+                  .sort((a, b) => {
+                    return b.sellCount - a.sellCount;
+                  })
+                  .slice(0, 4)
+                  .map((product) => (
+                    <div
+                      className="bestSellerProduct"
+                      onClick={() => history.push(`product/${product._id}`)}
+                    >
+                      <div className="bspLeft">
+                        <p className="bspName">
+                          {product.name.length > 40
+                            ? product.name.substring(0, 40) + "..."
+                            : product.name}
+                        </p>
+                        <p className="bspPrice">Rs. {product.price}/-</p>
+                      </div>
+                      <div className="bspRight">
+                        <img
+                          className="bspImage"
+                          src={product.images[0].url}
+                          alt={product.name}
+                        />
+                      </div>
                     </div>
-                    <div className="bspRight">
-                      <img className="bspImage" src={product.images[0].url} alt={product.name} />
-                    </div>
-                  </div>
-                ))}
+                  ))}
             </div>
           </div>
-
         </Fragment>
       )}
     </Fragment>

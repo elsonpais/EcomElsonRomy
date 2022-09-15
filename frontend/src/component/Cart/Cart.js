@@ -1,4 +1,4 @@
-import React, { Fragment } from "react";
+import React, { Fragment, useEffect } from "react";
 import "./Cart.css";
 // import CartItemCard from "./CartItemCard";
 import { useSelector, useDispatch } from "react-redux";
@@ -34,6 +34,10 @@ const Cart = ({ history }) => {
   const checkoutHandler = () => {
     history.push("/login?redirect=shipping");
   };
+
+  useEffect(()=> {
+    window.scrollTo(0,0);
+  },[]);
 
   return (
     <Fragment>

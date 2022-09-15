@@ -42,7 +42,6 @@ import ProductReviews from "./component/Admin/ProductReviews";
 import Contact from "./component/layout/Contact/Contact";
 import About from "./component/layout/About/About";
 import NotFound from "./component/layout/Not Found/NotFound";
-
 // import "bootstrap/dist/css/bootstrap.min.css";
 
 function App() {
@@ -122,7 +121,7 @@ function App() {
 
         <ProtectedRoute exact path="/order/:id" component={OrderDetails} />
 
-        <ProtectedRoute 
+        <ProtectedRoute
           isAdmin={true}
           exact
           path="/admin/dashboard"
@@ -181,7 +180,11 @@ function App() {
           component={ProductReviews}
         />
 
-        <Route component={NotFound} />
+        <Route
+          component={
+            window.location.pathname === "/process/payment" ? null : NotFound
+          }
+        />
       </Switch>
 
       <Footer />
