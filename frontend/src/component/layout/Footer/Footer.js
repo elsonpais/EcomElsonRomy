@@ -1,4 +1,4 @@
-import React from "react";
+import {React, useEffect} from "react";
 // import playStore from "../../../images/playstore.png";
 // import appStore from "../../../images/Appstore.png";
 import "./Footer.css";
@@ -7,6 +7,10 @@ import { useHistory } from "react-router-dom";
 const Footer = () => {
 
   const history = useHistory();
+
+  useEffect(()=> {
+    window.scrollTo(0,0);
+  },[]);
 
   return (
     <footer id="footer">

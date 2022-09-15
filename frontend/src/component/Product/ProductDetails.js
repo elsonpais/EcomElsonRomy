@@ -66,6 +66,7 @@ const ProductDetails = ({ match, history }) => {
   };
 
   const buyNowBtn = () => {
+    dispatch(addItemsToCart(match.params.id, quantity));
     history.push("/shipping") 
   }
 

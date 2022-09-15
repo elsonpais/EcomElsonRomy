@@ -42,7 +42,7 @@ const Products = ({ match }) => {
     tempCat = keyword;
     keyword = "";
     // document.getElementById("categorySelect").value = keyword;
-    console.log("category h = " + tempCat);
+    // console.log("category h = " + tempCat);
   }
 
   const [currentPage, setCurrentPage] = useState(1);
@@ -137,13 +137,14 @@ const Products = ({ match }) => {
                 <h3>Categories</h3>
                 <select
                   id="categorySelect"
-                  onChange={() =>
+                  onChange={() => {
                     document.getElementById("categorySelect").value != "All"
                       ? setCategory(
                           document.getElementById("categorySelect").value
                         )
-                      : setCategory("")
-                  }
+                      : setCategory("");
+                      keyword = "";
+                  }}
                 >
                   <option>{category || "All"}</option>
                   {categories
@@ -199,51 +200,6 @@ const Products = ({ match }) => {
             </div>
           </div>
 
-          {/* <div className="products">
-            {products &&
-              products.map((product) => (
-                <ProductCard key={product._id} product={product} />
-              ))}
-          </div> */}
-
-          {/* <div className="filterBox">
-            <Typography>Price</Typography>
-            <Slider
-              value={price}
-              onChange={priceHandler}
-              valueLabelDisplay="auto"
-              aria-labelledby="range-slider"
-              min={0}
-              max={500000}
-            />
-
-            <Typography>Categories</Typography>
-            <ul className="categoryBox">
-              {categories.map((category) => (
-                <li
-                  className="category-link"
-                  key={category}
-                  onClick={() => setCategory(category)}
-                >
-                  {category}
-                </li>
-              ))}
-            </ul>
-
-            <fieldset>
-              <Typography component="legend">Ratings Above</Typography>
-              <Slider
-                value={ratings}
-                onChange={(e, newRating) => {
-                  setRatings(newRating);
-                }}
-                aria-labelledby="continuous-slider"
-                valueLabelDisplay="auto"
-                min={0}
-                max={5}
-              />
-            </fieldset>
-          </div> */}
           {resultPerPage < count && (
             <div className="paginationBox">
               <Pagination
