@@ -80,8 +80,8 @@ body {
 
 .categoryIcon {
   position: relative;
-  width: 100px;
-  height: 100px;
+  width: 12vmax;
+  height: 10vmax;
   object-fit: scale-down;
 }
 

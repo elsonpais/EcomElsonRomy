@@ -11,7 +11,7 @@
   display: flex;
   flex-direction: column;
   width: 22vw;
-  height: 50vh;
+  height: auto;
   align-items: center;
   padding: 1vmax;
   text-decoration: none;
@@ -24,6 +24,7 @@
 .OrderProductImageContainer > img {
     height: 30vh;
     width: 15vw;
+    object-fit: scale-down;
 }
 
 .orderInfo {
@@ -42,4 +43,5 @@
 .OrderShippingInfo {
   color: black;
   width: 100%;
+  padding-top: 1vmax;
 }

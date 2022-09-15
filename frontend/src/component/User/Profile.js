@@ -15,6 +15,9 @@ import { saveShippingInfo } from "../../actions/cartAction";
 
 const Profile = ({ history }) => {
 
+  const firstName = "";
+  const lastName = "";
+
   const { shippingInfo } = useSelector((state) => state.cart);
 
   const [address, setAddress] = useState(shippingInfo.address);
@@ -37,9 +40,12 @@ const Profile = ({ history }) => {
     } else { 
       document.body.classList.remove('active-modal')
     }
+
+    dispatch(
+      saveShippingInfo({ address, city, state, country, pinCode, phoneNo })
+    );
   };
 
-  
   const toggleModal2 = () => {
     setModal2(!modal2);
 
@@ -55,6 +61,7 @@ const Profile = ({ history }) => {
   const { user, loading, isAuthenticated } = useSelector((state) => state.user);
 
   useEffect(() => {
+    window.scrollTo(0,0)
     if (isAuthenticated === false) {
       history.push("/login");
     }
@@ -76,6 +83,17 @@ const Profile = ({ history }) => {
   }
 
   const saveShipping = () => {
+
+    setModal(!modal);
+
+    if(modal) {
+      document.body.classList.add('active-modal')
+      //document.getElementsByClassName('modal2').style.visibility='hidden';
+      //document.getElementsByClassName('modal-content2').style.visibility='hidden';
+    } else { 
+      document.body.classList.remove('active-modal')
+    }
+
     if (phoneNo.length < 10 || phoneNo.length > 10) {
       alert.error("Phone Number should be 10 digits Long");
       return;
@@ -83,6 +101,38 @@ const Profile = ({ history }) => {
     dispatch(
       saveShippingInfo({ address, city, state, country, pinCode, phoneNo })
     );
+    // document.body.classList.remove('active-modal')
+  }
+
+  const closeShipping = () => {
+    setModal(!modal);
+
+    if(modal) {
+      document.body.classList.add('active-modal')
+      //document.getElementsByClassName('modal2').style.visibility='hidden';
+      //document.getElementsByClassName('modal-content2').style.visibility='hidden';
+    } else { 
+      document.body.classList.remove('active-modal')
+    }
+  }
+
+  const contactSaveBtn = () => {
+
+    setModal(!modal2);
+
+    if(modal2) {
+      document.body.classList.add('active-modal2')
+      //document.getElementsByClassName('modal2').style.visibility='hidden';
+      //document.getElementsByClassName('modal-content2').style.visibility='hidden';
+    } else { 
+      document.body.classList.remove('active-modal2')
+    }
+
+    // console.log("hello")
+    // document.body.classList.remove('active-modal2')
+
+    firstName = document.getElementById("firstname").value
+    lastName = document.getElementById("lastname").value
   }
 
   return (
@@ -130,19 +180,19 @@ const Profile = ({ history }) => {
             <h2>Account</h2>
             <a onClick={() => logoutUser()}>Sign Out &gt;</a>
           </div>
-          <h1>Hi {user.name}.</h1>
+          <h1>Hi {firstName == "" ? user.name : firstName + lastName}.</h1>
         </div>
-        
+         
         <div className="ProfileOrder">
-          <h1>Orders</h1>
-          <h4>You haven't placed any orders with us. When you do, their status will appear on this page</h4>
+          <h1>Welcome</h1>
+          <h4>We see our customers as invited guests to a party, and we are the hosts. It’s our job every day to make every important aspect of the customer experience a little bit better.” – Jeff Bezos, Founder of Amazon</h4>
         </div>
 
         <div className="OrderContainer">
           <div className="orderCard">
             <h1>Your Orders</h1>
             <p>Track, modify, or cancel an order or make a return.</p>
-            <a href="">See your order history &gt;</a>
+            <a href=""  onClick={() => history.push("/orders")}>See your order history &gt;</a>
           </div>
           <div className="soCard">
             <h1>Change Password</h1>
@@ -268,7 +318,7 @@ const Profile = ({ history }) => {
                 </select>)}
 
             <button onClick={() => saveShipping() } className="SaveBtn">Save</button>
-            <button className="CancelBtn">Cancel</button>
+            <button onClick={() => closeShipping() } className="CancelBtn">Cancel</button>
             <button className="close-modal" onClick={toggleModal}>
               <MdClose/>
             </button>
@@ -281,9 +331,9 @@ const Profile = ({ history }) => {
           <div onClick={toggleModal2} className="overlay2"></div>
           <div className="modal-content2">
             <h1>Edit your contact information.</h1>
-            <input placeholder="First Name"></input>
-            <input placeholder="Last Name"></input>
-            <button className="SaveBtn2">Save</button>
+            <input id="firstname" placeholder="First Name" ></input>
+            <input id="lastname" placeholder="Last Name" ></input>
+            <button onClick={() => contactSaveBtn()} className="SaveBtn2">Save</button>
             <button className="CancelBtn2">Cancel</button>
             <button className="close-modal2" onClick={toggleModal2}>
               <MdClose/>
