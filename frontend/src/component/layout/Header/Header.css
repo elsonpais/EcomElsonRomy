@@ -302,7 +302,29 @@ header .orange_nav {
 header {
   /* transition: all 00ms ease-in-out; */
   z-index: 9999;
+  overflow: hidden;
 }
+
+header .orange_nav img {
+  height: 80px; 
+  transform: translateX(-200vh);
+}
+
+header .orange_nav {
+  animation: nav_animation 3s infinite ;
+}
+
+@keyframes nav_animation{
+	0%{
+		transform: translateX(-500vh);
+		opacity: 0.8;
+	}
+	100%{
+		transform: translateX(600vh);
+		opacity: 0.5;
+	}
+}
+
 
 nav {
   position: fixed;
@@ -376,3 +398,103 @@ nav {
 /* .scroll-up header {
   filter: drop-shadow(0 -10px 20px rgb(170,170,170));
 } */
+
+.search-container.hide {
+	opacity: 0;
+	pointer-events: none;
+}
+.search-container {
+	width: 100%;
+  height: 10vh;
+	margin: 0 auto;
+	padding: 1vmax 2vmax;
+	position: fixed;
+  display: flex;
+  flex-direction: row;
+	top: 0;
+	left: 0;
+	right: 0;
+	z-index: 200;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  /* margin-top: 4vh; */
+  /* background-color: aliceblue; */
+}
+
+
+
+.search-bar {
+	width: 60%;
+	/* margin: 0 auto; */
+  /* background-color: red; */
+}
+
+.search-container form input {
+	width: 100%;
+	height: auto;
+	border: 0;
+	outline: none;
+	background: rgb(181, 181, 181);
+  color: black;
+	font-family: "Inter", sans-serif;
+	font-size: 17px;
+  padding: 0.5vmax 1vmax;
+  border-radius: 10px;
+  margin-right: 1vw;
+}
+
+::-ms-input-placeholder { /* Microsoft Edge */
+  color: white;
+}
+
+.close-search {
+	display: flex;
+	background-position: center;
+	background-size: 20px;
+	background-repeat: no-repeat;
+	font-size: medium;
+  opacity: 0.8;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  cursor: pointer;
+  margin-left: 1vw;
+  /* background-color: aqua; */
+}
+/* .search-container .close-search {
+	position: absolute;
+	top: 0;
+	right: 12px;
+	opacity: 0.5;
+	cursor: pointer;
+	transition: all 400ms;
+} */
+.search-container .close:hover {
+	opacity: 0.7;
+}
+
+.search-bar > form > input {
+  color: black;
+}
+
+.leftNav .hide {
+	opacity: 0;
+	pointer-events: none;
+}
+
+.orange_nav.hide {
+	opacity: 0;
+	pointer-events: none;
+  visibility: hidden;
+}
+
+.rightNav.hide {
+	opacity: 0;
+	pointer-events: none;
+}
+
+.searchBtn.hide {
+	opacity: 0;
+	pointer-events: none;
+}

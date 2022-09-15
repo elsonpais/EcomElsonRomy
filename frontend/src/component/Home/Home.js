@@ -77,8 +77,6 @@ const Home = () => {
     },
   ];
 
-
-
   useEffect(() => {
     if (error) {
       alert.error(error);

@@ -7,9 +7,13 @@
   font-family: 'Poppins', sans-serif;
 }
 
+body{
+  overflow-y: scroll;
+}
+
 .profilePage {
   background-color: rgb(243,244,244);
-  margin-top: 8vh;
+  /* margin-top: 8vh; */
 }
 
 .parent > div{
@@ -54,6 +58,7 @@
   background-color: white;
   width: 100%;
   height: 33vh;
+  padding-right: 10vw;
 }
 
 .ProfileOrder > h1 {
@@ -238,7 +243,7 @@
 /* Dialog CSS */
 
 body.active-modal {
-    overflow-y: hidden;
+    /* overflow-y: hidden; */
 }
 
 .btn-modal {
@@ -256,12 +261,12 @@ body.active-modal {
     right: 0;
     bottom: 0;
     position: fixed;
-    overflow: hidden;
+    /* overflow: hidden; */
 }
 
 .overlay {
     background: rgba(49,49,49,0.8);
-    overflow: hidden;
+    /* overflow: hidden; */
 }
 .modal-content {
     position: absolute;
@@ -284,6 +289,13 @@ body.active-modal {
 }
 
 .modal-content > input {
+  border-radius: 10px;
+  padding: 2vh 1vw;
+  margin-bottom: 1vh;
+  border: 1px solid rgb(181, 181, 181);
+}
+
+.modal-content > select {
   border-radius: 10px;
   padding: 2vh 1vw;
   margin-bottom: 1vh;
@@ -319,8 +331,8 @@ body.active-modal {
     font-size: larger;
     color: rgb(74, 74, 74);
     border: none;
-    background-color: rgb(148, 148, 148);
-    border-radius: 400px;
+    background-color: rgb(255, 255, 255);
+    /* border-radius: 400px; */
     padding-top: 0.4vh;
     padding-left: 0.3vw;
     padding-right: 0.3vw;

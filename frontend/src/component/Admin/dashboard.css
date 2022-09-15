@@ -1,3 +1,12 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap');
+
+*{
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+
 .dashboard {
   width: 100vw;
   max-width: 100%;
@@ -14,7 +23,7 @@
 
 .dashboardContainer > h1 {
   color: rgba(0, 0, 0, 0.733);
-  font: 300 2rem "Roboto";
+  font: 300 2rem "Poppins";
   text-align: center;
   width: 50%;
   padding: 1.5rem;
@@ -31,19 +40,20 @@
   justify-content: center;
 }
 .dashboardSummary > div > p {
-  background-color: rgba(70, 117, 218, 0.932);
+  background-color: rgb(4, 116, 228);
   color: white;
   font: 300 1.3rem "Roboto";
   text-align: center;
   padding: 1.5rem;
   width: 100%;
   margin: 0 2rem;
+  border-radius: 220px;
 }
 .dashboardSummaryBox2 > a {
   color: rgb(0, 0, 0);
-  font: 300 2rem "Roboto";
+  font: 300 2rem "Poppins";
   text-align: center;
-  background-color: rgb(255, 233, 174);
+  background-color: #ffa600;
   text-decoration: none;
   padding: 1.5rem;
   width: 10vmax;
@@ -57,12 +67,12 @@
 }
 
 .dashboardSummaryBox2 > a:first-child {
-  background-color: rgb(255, 110, 110);
+  background-color: #ff1700;
   color: rgb(255, 255, 255);
 }
 
 .dashboardSummaryBox2 > a:last-child {
-  background-color: rgb(51, 51, 51);
+  background-color: #4d6910;
   color: rgb(255, 255, 255);
 }
 
@@ -92,6 +102,6 @@
   .dashboardSummaryBox2 > a {
     padding: 0.5rem;
     margin: 1rem;
-    font: 300 0.9rem "Roboto";
+    font: 300 0.9rem "Poppins";
   }
 }

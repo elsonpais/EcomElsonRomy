@@ -1,5 +1,5 @@
 import React from "react";
-import {useRef} from "react"
+import {useRef, useState} from "react"
 import {
   FaBars,
   FaTimes,
@@ -29,7 +29,7 @@ import { useHistory } from "react-router-dom";
 //   link1Text: "Home",
 //   link2Text: "Products",
 //   link3Text: "Contact",
-//   link4Text: "About",
+//   link4Text: "About", 
 //   link1Url: "/",
 //   link2Url: "/products",
 //   link3Url: "/contact",
@@ -53,6 +53,9 @@ import { useHistory } from "react-router-dom";
 // };
 
 const Header = () => {
+
+  // const [search, setSearch] = useState("");
+  // const searchText = ""
 
   const body = document.body;
   let lastScroll = 0;
@@ -114,6 +117,13 @@ const Header = () => {
     history.push("/products");
   };
 
+  const handleKeyDown = (event) => {
+    if (event.key === 'Enter') {
+      
+      history.push(`/products/:${document.getElementById("searchText").value}`) 
+    }
+  }
+
   return (
     <>
       <header>
@@ -153,10 +163,12 @@ const Header = () => {
       <button className="nav-btn" onClick={showNavbar}><FaBars/></button> */}
 
         <nav>
-          <div className="leftNav">
+        <div ref={navRef} className="leftNav">
             <h3>LOGO</h3>
           </div>
-          <div className="rightNav">
+        <div ref={navRef} className="orange_nav"><img src="https://th.bing.com/th/id/R.fcb07201723665e2b3073a21430dd62a?rik=AeI5ifj%2bJweb3g&riu=http%3a%2f%2fwww.baltana.com%2ffiles%2fwallpapers-10%2fOrange-Abstract-Shape-Background-Wallpaper-28389.jpg&ehk=ypjsA6IOuR1FFjY9MfrTGTf%2bSrYlmzV%2b47HJC8fJ1KM%3d&risl=&pid=ImgRaw&r=0"></img></div>
+          
+          <div ref={navRef} className="rightNav">
             <div className="navBtns">
               <button onClick={homeNavBtn}>
                 <IoHomeOutline className="navIcon" />
@@ -174,12 +186,29 @@ const Header = () => {
                 <FiUser className="navIcon navIconUser" />
                 Profile
               </button>
-              <button>
+              <button ref={searchvisi} onClick={() => searchBtn()}>
                 <AiOutlineSearch className="navIcon navIconSearch" />
                 Search
-              </button>
+              </button> 
             </div>
           </div>
+
+          <div ref={searchRef} class="search-container hide">
+		   			{/* <div class="search"></div> */}
+		   			<div class="search-bar">
+		   				<form onSubmit={() => history.push(`/products/${document.getElementById("searchText").value}`)}>
+		   					<input 
+                  id="searchText"
+                  type="text"
+                  placeholder="Search"
+                //  value={searchText}
+                //  onKeyDown={() => handleKeyDown()}
+                 />
+		   				</form>
+		   			</div>
+		   			<div onClick={close_search} class="close-search"><IoClose/></div>
+          </div> 
+
         </nav>
       </header>
     </>
