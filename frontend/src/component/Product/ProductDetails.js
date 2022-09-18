@@ -229,7 +229,7 @@ const ProductDetails = ({ match, history }) => {
               {product.reviews &&
                 product.reviews.map((review) => (
                   <ReviewCard key={review._id} review={review} />
-                ))}
+                ))} 
             </div>
           ) : (
             <p className="noReviews">No Reviews Yet</p>
