@@ -118,7 +118,7 @@ const MyOrders = () => {
             {orders &&
               orders.map((order) => (
                   order.orderItems.map((item) => (
-                    <OrderCard item={item} status ={order.orderStatus} date = {order.deliveredAt}/>
+                    <OrderCard item={item} status ={order.orderStatus} date = {order.createdAt}/>
                   )) 
               ))}
               {/* {orders &&

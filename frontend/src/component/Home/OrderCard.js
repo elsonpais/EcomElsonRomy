@@ -36,7 +36,7 @@ const OrderCard = ({ item, status, date }) => {
             </div>
 
             <div className="OrderShippingInfo">
-              <h2>{(status == "Processing" ? `Arrives ${Date(date).substring(0, 10)}` : `Delivered ${Date(date).substring(0, 10)}`)}</h2>
+              <h2>{(status == "Processing" ? `Arrives ${new Date((new Date(date)).getTime()+60480000).toDateString().substring(0,10)}` : `Delivered ${Date(date).substring(0, 10)}`)}</h2>
             </div>
         </Link>  
     // {/* </Fragment> */}

@@ -94,12 +94,12 @@ body {
 }
 
 .categoryName:hover {
-  font-size: 1.4vmax;
+  /* font-size: 1.4vmax;
   margin: 0.5vmax 0;
   color: rgb(0, 0, 0);
   font-family: Poppins;
   text-decoration: underline;
-  opacity: 1;
+  opacity: 1; */
 }
 
 .rec-arrow-left {

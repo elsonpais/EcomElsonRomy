@@ -116,6 +116,7 @@ body{
   margin-right: 16vw;
   border-radius: 5px;
   padding-top: 5vh;
+  padding-bottom: 5vh;
   padding-left: 2.6vw;
   padding-right: 2vw;
 }
@@ -433,6 +434,29 @@ cursor: pointer;
 .close-modal2:hover {
 color: black;
 cursor: pointer;
+}
+
+@media only screen and (max-width: 1140px) {
+  .soCard {
+    height: 23vmax;
+  }
+  .orderCard {
+    height: 23vmax;
+  }
+}
+@media only screen and (max-width: 1340px) {
+  .soCard {
+    height: 23vmax;
+    margin-right: 5vw;
+  }
+  .orderCard {
+    height: 23vmax;
+    margin-left: 5vw;
+  }
+}
+
+@media only screen and (max-width: 800px) {
+
 }
 
 
